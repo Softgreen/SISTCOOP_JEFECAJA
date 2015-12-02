@@ -1,0 +1,27 @@
+<h1><strong>Pendientes de caja</strong>
+
+  <div class="pull-right">
+    <a href="" ui-sref="^.crear" class="btn btn-primary">Nuevo</a>
+  </div>
+</h1>
+
+<div class="row" style="border-top: 1px solid #d0d0d0;">
+  <div class="col-sm-8">
+    <div class="page-header page-header-bleed-right">
+      <div class="actions pull-right">
+        <a href="#" data-ng-click="search()"><span class="pficon pficon-refresh"></span> Actualizar</a>
+      </div>
+      <h1>Pendientes del dia</h1>
+    </div>
+    <div ui-grid="gridOptionsDelDia" external-scopes="gridActions" ui-grid-selection class="grid"></div>
+  </div>
+  <div class="col-sm-4 sidebar-pf sidebar-pf-right">
+    <div class="page-header page-header-bleed-right">
+      <div class="actions pull-right">
+        <a href="#" data-ng-click="search()"><span class="pficon pficon-refresh"></span> Actualizar</a>
+      </div>
+      <h1>Por pagar</h1>
+    </div>
+    <div ui-grid="gridOptionsPorPagar" external-scopes="gridActions" ui-grid-selection class="grid"></div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<form name="form" class="form-horizontal" novalidate>
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">
+      <span class="pficon pficon-close"></span>
+    </button>
+    <h4 class="modal-title">Estas seguro de realizar esta operacion?</h4>
+  </div>
+  <div class="modal-body">
+    <fieldset class="border-top">
+      <legend><span class="text"></span></legend>
+      <dl class="dl-horizontal left">
+        <dt>CLIENTE:</dt>
+        <dd data-ng-bind="view.transaccion.cliente | uppercase"></dd>
+        <dt>OPERACION:</dt>
+        <dd data-ng-bind="view.operacion.denominacion"></dd>
+        <dt>TIPO CAMBIO:</dt>
+        <dd data-ng-bind="view.transaccion.tipoCambio | number: 3"></dd>
+        <dt>CAJERO RECIBE:</dt>
+        <dd data-ng-bind-template="{{view.transaccion.montoRecibido | currency: ''}} {{view.operacion.denominacionMonedaRecibida | uppercase}}"></dd>
+        <dt>CAJERO ENTREGA:</dt>
+        <dd data-ng-bind-template="{{view.transaccion.montoEntregado | currency: ''}} {{view.operacion.denominacionMonedaEntregada | uppercase}}"></dd>
+      </dl>
+    </fieldset>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" data-ng-click="ok()" pf-focused="true" autofocus>Guardar</button>
+    <button class="btn btn-default" data-ng-click="cancel()">Cancelar</button>
+  </div>
+</form>

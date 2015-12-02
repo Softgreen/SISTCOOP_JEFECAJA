@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <fieldset class="border-top">
+          <legend><span class="text">Datos del cliente</span></legend>
+          <dl class="dl-horizontal left">
+            <dt>Documento:</dt>
+            <dd data-ng-bind-template="{{view.cuentaPersonal.tipoDocumento}}: {{view.cuentaPersonal.numeroDocumento}}"></dd>
+            <dt>Cliente:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.socio"></dd>
+          </dl>
+        </fieldset>
+        <fieldset class="border-top">
+          <legend><span class="text">Datos de cuenta</span></legend>
+          <dl class="dl-horizontal left">
+            <dt>Tipo cuenta:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.tipoCuenta"></dd>
+            <dt>Numero cuenta:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.numeroCuenta"></dd>
+            <dt>Cantidad retirantes:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.cantidadRetirantes"></dd>
+            <dt>Estado:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.estadoCuenta | si_no : 'ACTIVO'"></dd>
+          </dl>
+        </fieldset>
+        <fieldset class="border-top">
+          <legend><span class="text">Datos chequera</span></legend>
+          <dl class="dl-horizontal left">
+            <dt>Cantidad cheques:</dt>
+            <dd data-ng-bind="view.chequera.numeroFin - view.chequera.numeroInicio + 1 | number : 0"></dd>
+            <dt>Numero cheque inicio:</dt>
+            <dd data-ng-bind="view.chequera.numeroInicio | number: 0"></dd>
+            <dt>Numero cheque fin:</dt>
+            <dd data-ng-bind="view.chequera.numeroFin | number: 0"></dd>
+            <dt>Fecha emision:</dt>
+            <dd data-ng-bind="view.chequera.fechaDisponible | date: 'dd/MM/yyyy'"></dd>
+            <dt>Fecha expiracion:</dt>
+            <dd data-ng-bind="view.chequera.fechaExpiracion | date: 'dd/MM/yyyy'"></dd>
+            <dt>Estado:</dt>
+            <dd data-ng-bind="view.chequera.estado | si_no: 'ACTIVO'"></dd>
+          </dl>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <fieldset class="border-top">
+          <legend><span class="text">Detalle chequera</span></legend>
+          <table class="table table-striped table-bordered table-condensed">
+            <caption data-ng-show="!view.load.cheques.length">No se encontraron cheques.</caption>
+            <thead data-ng-show="view.load.cheques.length">
+            <tr>
+              <th>#</th>
+              <th>Numero cheque</th>
+              <th>Numero cheque para transaccion</th>
+              <th>Estado</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="item in view.load.cheques | orderBy: 'numeroCheque'">
+              <td><span data-ng-bind="$index+1"></span></td>
+              <td><span ng-bind="item.numeroCheque"></span></td>
+              <td><span ng-bind="item.numeroChequeUnico"></span></td>
+              <td><span ng-bind="item.estado"></span></td>
+            </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

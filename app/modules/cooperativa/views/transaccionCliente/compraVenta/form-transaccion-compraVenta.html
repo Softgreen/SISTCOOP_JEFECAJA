@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-sm-8 col-md-9">
+    <div class="page-header page-header-bleed-right">
+      <div class="actions pull-right">
+        <a href="#" data-ng-click="view.transaccion.limpiar()"><span class="pficon pficon-refresh"></span> Limpiar</a>
+      </div>
+      <h1>Compra venta de moneda extrangera</h1>
+    </div>
+    <form name="form" class="form-horizontal" novalidate>
+      <div class="form-group" ng-class="{ 'has-error' : form.cliente.$invalid && form.$submitted}">
+        <label class="col-sm-3 control-label">Cliente:</label>
+        <div class="col-sm-3">
+          <input type="text" name="cliente" ng-model="view.transaccion.cliente" ng-maxlength="100" pf-focused="true" autofocus class="form-control"/>
+          <div ng-messages="form.cliente.$error" ng-if="form.$submitted">
+            <div class="has-error" ng-message="maxlength">Maximo 100 caracteres.</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error' : form.operacion.$invalid && form.$submitted}">
+        <label class="col-sm-3 control-label"><span class="required">*</span> Operacion:</label>
+        <div class="col-sm-3">
+          <ui-select name="operacion" ng-model="combo.selected.operacion" required>
+            <ui-select-match placeholder="Operacion">{{$select.selected.denominacion}}</ui-select-match>
+            <ui-select-choices group-by="combo.groupFn" repeat="item in combo.operacion | filter: $select.search">
+              <div ng-bind-html="item.denominacion | highlight: $select.search"></div>
+            </ui-select-choices>
+          </ui-select>
+          <div ng-messages="form.operacion.$error" ng-if="form.operacion.$dirty || form.$submitted">
+            <div class="has-error" ng-message="required">Ingrese operacion.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="btn-group">
+            <label class="btn btn-default" ng-model="combo.selected.operacion" btn-radio="combo.operacion[0]">$ COMPRA</label>
+            <label class="btn btn-default" ng-model="combo.selected.operacion" btn-radio="combo.operacion[1]">$ VENTA</label>
+          </div>
+          <div class="btn-group">
+            <label class="btn btn-default" ng-model="combo.selected.operacion" btn-radio="combo.operacion[2]">&#8364; COMPRA</label>
+            <label class="btn btn-default" ng-model="combo.selected.operacion" btn-radio="combo.operacion[3]">&#8364; VENTA</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error' : form.tipoCambio.$invalid && form.$submitted}">
+        <label class="col-sm-3 control-label"><span class="required">*</span> Tipo cambio:</label>
+        <div class="col-sm-3" data-ng-if="!access.login">
+          <span style="font-size: 15px;"><strong data-ng-bind="view.transaccion.tipoCambio | number : 3"></strong></span>
+        </div>
+        <div class="col-sm-3" data-ng-if="access.login">
+          <input type="text" name="tipoCambio" ng-model="view.transaccion.tipoCambio" class="form-control"
+                 ui-number-mask="3" min="0" max="100"
+                 ng-minlength="1" ng-maxlength="10"
+                 placeholder="0.000" required/>
+          <div ng-messages="form.tipoCambio.$error" ng-if="form.$submitted">
+            <div class="has-error" ng-message="required">Ingrese tipo de cambio.</div>
+            <div class="has-error" ng-message="maxlength">Maximo 100 caracteres.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <a href="" data-ng-click="login()" class="btn btn-link">Editar</a>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error' : form.montoRecibido.$invalid && form.$submitted}">
+        <label class="col-sm-3 control-label"><span class="required">*</span> Monto recibido:</label>
+        <div class="col-sm-3">
+          <input type="text" name="montoRecibido" ng-model="view.transaccion.montoRecibido" class="form-control"
+                 data-ng-disabled="combo.selected.operacion.tipo == 'VENTA'"
+                 ui-number-mask="2" min="0" max="999999999"
+                 ng-minlength="1" ng-maxlength="20"
+                 placeholder="0.00" required/>
+          <div ng-messages="form.montoRecibido.$error" ng-if="form.$submitted">
+            <div class="has-error" ng-message="required">Ingrese monto recibido.</div>
+            <div class="has-error" ng-message="maxlength">Maximo 100 caracteres.</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error' : form.montoEntregado.$invalid && form.$submitted}">
+        <label class="col-sm-3 control-label"><span class="required">*</span> Monto entregado:</label>
+        <div class="col-sm-3">
+          <input type="text" name="montoEntregado" ng-model="view.transaccion.montoEntregado" class="form-control"
+                 data-ng-disabled="combo.selected.operacion.tipo == 'COMPRA'"
+                 ui-number-mask="2" min="0" max="999999999"
+                 ng-minlength="1" ng-maxlength="20"
+                 placeholder="0.00" required/>
+          <div ng-messages="form.montoEntregado.$error" ng-if="form.$submitted">
+            <div class="has-error" ng-message="required">Ingrese monto entregado.</div>
+            <div class="has-error" ng-message="maxlength">Maximo 100 caracteres.</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button sg-save ng-disabled="working">
+            <span ng-show="working">Guardando...</span>
+            <span ng-hide="working">Guardar</span>
+          </button>
+          <button sg-cancel ng-disabled="working" ui-sref="^.buscar">Cancelar</button>
+        </div>
+      </div>
+    </form>
+  </div><!-- /col -->
+  <div class="col-sm-4 col-md-3 sidebar-pf sidebar-pf-right">
+    <div class="sidebar-header sidebar-header-bleed-left sidebar-header-bleed-right">
+      <div class="actions pull-right">
+        <a href="#" data-ng-click="view.voucher.limpiar()">Limpiar</a>
+      </div>
+      <h2 class="h5">Ultimos vouchers</h2>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" data-ng-repeat="item in view.voucher.list">
+        <h3 class="list-group-item-heading" data-ng-bind-template="COMPRA/VENTA OPERACION NRO.:{{item.fecha | date: 'dd/MM/yyyy'}}"></h3>
+        <dl class="dl-horizontal left">
+          <dt style="width: 130px;">Nro.Trans:</dt>
+          <dd style="margin-left: 130px;" data-ng-bind="item.id"></dd>
+          <dt style="width: 130px;">Fecha:</dt>
+          <dd style="margin-left: 130px;" data-ng-bind-template="{{item.fecha | date: 'dd/MM/yyyy'}} {{item.hora | date : 'HH:mm:ss'}}"></dd>
+          <dt style="width: 130px;">Operacion:</dt>
+          <dd style="margin-left: 130px;" data-ng-bind="item.tipoTransaccion"></dd>
+          <dt style="width: 130px;">T.Cambio:</dt>
+          <dd style="margin-left: 130px;" data-ng-bind="item.tipoCambio | number: 3"></dd>
+          <dt style="width: 130px;">Recibido:</dt>
+          <dd style="margin-left: 130px;" data-ng-bind-template="{{item.montoRecibido | currency: ''}} {{item.monedaRecibida.denominacion | uppercase}}"></dd>
+          <dt style="width: 130px;">Entregado:</dt>
+          <dd style="margin-left: 130px;" data-ng-bind-template="{{item.montoEntregado | currency: ''}} {{item.monedaEntregada.denominacion | uppercase}}"></dd>
+          <dt style="width: 130px;">Estado:</dt>
+          <dd style="margin-left: 130px;" data-ng-bind="item.estado | si_no: 'ACTIVO' | uppercase"></dd>
+        </dl>
+        <button type="button" data-ng-click="imprimir(item)" data-ng-disabled="!item.estado" class="btn btn-info btn-xs">
+          <i class="pficon pficon-print"></i><span>&nbsp;Imprimir</span>
+        </button>
+        <button type="button" data-ng-click="extornar(item, $index)" data-ng-disabled="!item.estado" class="btn btn-danger btn-xs">
+          <i class="pficon pficon-delete"></i><span>&nbsp;Extornar</span>
+        </button>
+      </li>
+    </ul>
+    <p><a href="#" ui-sref="cooperativa.app.transaccionCliente.historial.buscar">Mas transacciones</a></p>
+  </div><!-- /col -->
+</div>
+

@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <fieldset class="border-top">
+          <legend><span class="text">Datos del cliente</span></legend>
+          <dl class="dl-horizontal left">
+            <dt>Documento:</dt>
+            <dd data-ng-bind-template="{{view.cuentaPersonal.tipoDocumento}}: {{view.cuentaPersonal.numeroDocumento}}"></dd>
+            <dt>Cliente:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.socio"></dd>
+          </dl>
+        </fieldset>
+        <fieldset class="border-top">
+          <legend><span class="text">Datos de cuenta</span></legend>
+          <dl class="dl-horizontal left">
+            <dt>Tipo cuenta:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.tipoCuenta"></dd>
+            <dt>Numero cuenta:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.numeroCuenta"></dd>
+            <dt>Cantidad retirantes:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.cantidadRetirantes"></dd>
+            <dt>Estado:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.estadoCuenta | si_no : 'ACTIVO'"></dd>
+          </dl>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <fieldset class="border-top">
+          <legend><span class="text">Datos financieros</span></legend>
+          <dl class="dl-horizontal left">
+            <dt>Moneda:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.moneda"></dd>
+            <dt>Saldo:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.saldo | currency: ''"></dd>
+            <dt>TEA (%):</dt>
+            <dd data-ng-bind="view.cuentaPersonal.tasaInteres * 100 | number: 3"></dd>
+          </dl>
+        </fieldset>
+        <fieldset class="border-top">
+          <legend><span class="text">Datos adicionales</span></legend>
+          <dl class="dl-horizontal left">
+            <dt>Fecha apertura:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.fechaApertura | date : 'dd/MM/yyyy'"></dd>
+            <dt>Fecha cierre:</dt>
+            <dd data-ng-bind="view.cuentaPersonal.fechaCierre | date : 'dd/MM/yyyy'"></dd>
+          </dl>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <fieldset class="border-top">
+          <legend><span class="text">Titulares</span></legend>
+          <table class="table table-striped table-bordered table-condensed">
+            <caption data-ng-show="!view.load.titulares.length">No se encontraron titulares.</caption>
+            <thead data-ng-show="view.load.titulares.length">
+            <tr>
+              <th>#</th>
+              <th>Documento</th>
+              <th>Numero</th>
+              <th>Apellidos y nombres</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="item in view.load.titulares">
+              <td><span data-ng-bind="$index+1"></span></td>
+              <td><span ng-bind="item.personaNatural.tipoDocumento.abreviatura"></span></td>
+              <td><span ng-bind="item.personaNatural.numeroDocumento"></span></td>
+              <td><span ng-bind-template="{{item.personaNatural.apellidoPaterno}} {{item.personaNatural.apellidoMaterno}}, {{item.personaNatural.nombres}}"></span></td>
+            </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <fieldset class="border-top">
+          <legend><span class="text">Beneficiarios</span></legend>
+          <table class="table table-striped table-bordered table-condensed">
+            <caption data-ng-show="!view.load.beneficiarios.length">No se encontraron beneficiarios.</caption>
+            <thead data-ng-show="view.load.beneficiarios.length">
+            <tr>
+              <th>#</th>
+              <th>Num.Documento</th>
+              <th>Apellidos y nombres</th>
+              <th>Beneficio</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="item in view.load.beneficiarios">
+              <td><span data-ng-bind="$index+1"></span></td>
+              <td><span ng-bind="item.numeroDocumento"></span></td>
+              <td><span ng-bind-template="{{item.apellidoPaterno}} {{item.apellidoMaterno}}, {{item.nombres}}"></span></td>
+              <td><span ng-bind="item.porcentajeBeneficio"></span><span>%</span></td>
+            </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

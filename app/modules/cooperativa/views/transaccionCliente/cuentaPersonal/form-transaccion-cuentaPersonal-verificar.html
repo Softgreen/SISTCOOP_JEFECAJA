@@ -1,0 +1,59 @@
+<form name="form" class="form-horizontal" novalidate>
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">
+      <span class="pficon pficon-close"></span>
+    </button>
+    <h4 class="modal-title">Estas seguro de realizar esta operacion?</h4>
+  </div>
+  <div class="modal-body">
+    <table ng-show="view.titulares" class="table table-striped table-bordered table-condensed">
+      <thead>
+      <tr>
+        <th colspan="5">Titulares de la cuenta</th>
+      </tr>
+      <tr>
+        <th>Documento</th>
+        <th>Numero</th>
+        <th>Apellido paterno</th>
+        <th>Apellido materno</th>
+        <th>Nombres</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr data-ng-repeat="item in view.titulares">
+        <td><span data-ng-bind="item.personaNatural.tipoDocumento.abreviatura"></span></td>
+        <td><span data-ng-bind="item.personaNatural.numeroDocumento"></span></td>
+        <td><span data-ng-bind="item.personaNatural.apellidoPaterno"></span></td>
+        <td><span data-ng-bind="item.personaNatural.apellidoMaterno"></span></td>
+        <td><span data-ng-bind="item.personaNatural.nombres"></span></td>
+      </tr>
+      </tbody>
+    </table>
+    <fieldset class="border-top">
+      <legend><span class="text">Cuenta personal</span></legend>
+      <dl class="dl-horizontal left">
+        <dt>TIPO CUENTA:</dt>
+        <dd data-ng-bind="view.cuentaPersonal.tipoCuenta"></dd>
+        <dt>NUMERO CUENTA:</dt>
+        <dd data-ng-bind="view.cuentaPersonal.numeroCuenta"></dd>
+        <dt>MONEDA:</dt>
+        <dd data-ng-bind="view.cuentaPersonal.moneda"></dd>
+      </dl>
+    </fieldset>
+    <fieldset class="border-top">
+      <legend><span class="text">Transaccion</span></legend>
+      <dl class="dl-horizontal left">
+        <dt>TIPO TRANSACCION:</dt>
+        <dd data-ng-bind="view.tipoTransaccion.denominacion"></dd>
+        <dt>MONTO TRANSACCION:</dt>
+        <dd data-ng-bind-template="{{view.cuentaPersonal.moneda}}{{view.transaccion.monto | currency: ''}}"></dd>
+        <dt>REFERENCIA:</dt>
+        <dd data-ng-bind="view.transaccion.referencia"></dd>
+      </dl>
+    </fieldset>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" data-ng-click="ok()" pf-focused="true" autofocus>Guardar</button>
+    <button class="btn btn-default" data-ng-click="cancel()">Cancelar</button>
+  </div>
+</form>

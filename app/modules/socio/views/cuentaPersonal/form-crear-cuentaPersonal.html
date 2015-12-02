@@ -1,0 +1,192 @@
+<div ncy-breadcrumb></div>
+
+<h1><strong>Crear cuenta personal</strong></h1>
+
+<form name="form" class="form-horizontal" novalidate>
+
+  <fieldset class="border-top">
+    <legend><span class="text ng-scope">Datos principales <i class="fa fa-question-circle text-muted ng-scope"
+                                                            tooltip="Una cuenta representa una entidad de almacenamiento de dinero."
+                                                            tooltip-placement="right"></i></span></legend>
+    <div class="form-group" data-ng-class="{ 'has-error' : form.tipoCuenta.$invalid && form.$submitted }">
+      <label class="col-sm-2 control-label"><span class="required">*</span> Tipo cuenta:</label>
+
+      <div class="col-sm-3">
+        <ui-select name="tipoCuenta" data-ng-model="combo.selected.tipoCuenta" pf-focused="true" autofocus required>
+          <ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
+          <ui-select-choices repeat="item in combo.tipoCuenta | filter: $select.search">
+            <div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+        <div data-ng-messages="form.tipoCuenta.$error" data-ng-if="form.$submitted">
+          <div class="has-error" data-ng-message="required">Ingrese tipo cuenta.</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" data-ng-class="{ 'has-error' : form.tipoPersona.$invalid && form.$submitted }">
+      <label class="col-sm-2 control-label"><span class="required">*</span> Tipo persona:</label>
+      <div class="col-sm-3">
+        <ui-select name="tipoCuenta" data-ng-model="combo.selected.tipoPersona" required>
+          <ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
+          <ui-select-choices repeat="item in combo.tipoPersona | filter: $select.search">
+            <div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+        <div data-ng-messages="form.tipoPersona.$error" data-ng-if="form.$submitted">
+          <div class="has-error" data-ng-message="required">Ingrese tipo persona.</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" data-ng-class="{ 'has-error' : (form.tipoDocumento.$invalid || form.numeroDocumento.$invalid ) && form.numeroDocumento.$dirty}">
+      <label class="col-sm-2 control-label"><span class="required">*</span> Persona:</label>
+      <div class="col-sm-3">
+        <ui-select name="tipoDocumento" data-ng-model="combo.selected.tipoDocumento" required>
+          <ui-select-match placeholder="Documento">{{$select.selected.abreviatura}}</ui-select-match>
+          <ui-select-choices repeat="item in combo.tipoDocumento | filter: $select.search">
+            <div data-ng-bind-html="item.abreviatura | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+        <div data-ng-messages="form.tipoDocumento.$error" data-ng-if="form.tipoDocumento.$touched || form.$submitted">
+          <div class="has-error" data-ng-message="required">Ingrese documento.</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="text" name="numeroDocumento" data-ng-model="view.cuentaPersonal.numeroDocumento"
+                 ui-keypress="{13:'check($event)'}" data-ng-pattern="/^[0-9]+$/"
+                 data-ng-minlength="combo.selected.tipoDocumento.numeroCaracteres"
+                 data-ng-maxlength="combo.selected.tipoDocumento.numeroCaracteres" class="form-control" placeholder="Numero"
+                 required/><span class="input-group-btn"><button type="button" data-ng-click="check()" tooltip="Check" tooltip-trigger="mouseenter" tooltip-placement="bottom" class="btn btn-default"><span class="glyphicon glyphicon-check"></span></button></span>
+        </div>
+        <div data-ng-messages="form.numeroDocumento.$error" data-ng-if="form.numeroDocumento.$dirty || form.numeroDocumento.$touched || form.$submitted">
+          <div class="has-error" data-ng-message="required">Ingrese numero documento.</div>
+          <div class="has-error" data-ng-message="minlength">Debe tener <span
+            data-ng-bind="combo.selected.tipoDocumento.numeroCaracteres"></span> digitos.
+          </div>
+          <div class="has-error" data-ng-message="maxlength">Debe tener <span
+            data-ng-bind="combo.selected.tipoDocumento.numeroCaracteres"></span> digitos.
+          </div>
+          <div class="has-error" data-ng-message="pattern">Numero invalido.</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <a href="" ui-sref="persona.app.persona.natural.crear" class="btn btn-link" target="_blank">Crear persona</a>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label"></label>
+      <div class="col-sm-8">
+        <table ng-show="view.load.persona.nombres" class="table table-striped table-bordered table-condensed">
+          <thead>
+          <tr>
+            <th colspan="5">Persona natural seleccionada</th>
+          </tr>
+          <tr>
+            <th>Documento</th>
+            <th>Numero</th>
+            <th>Apellido paterno</th>
+            <th>Apellido materno</th>
+            <th>Nombres</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span data-ng-bind="view.load.persona.tipoDocumento.abreviatura"></span></td>
+            <td><span data-ng-bind="view.load.persona.numeroDocumento"></span></td>
+            <td><span data-ng-bind="view.load.persona.apellidoPaterno"></span></td>
+            <td><span data-ng-bind="view.load.persona.apellidoMaterno"></span></td>
+            <td><span data-ng-bind="view.load.persona.nombres"></span></td>
+          </tr>
+          </tbody>
+        </table>
+        <table ng-show="view.load.persona.razonSocial" class="table table-striped table-bordered table-condensed">
+          <thead>
+          <tr>
+            <th colspan="5">Persona juridica seleccionada</th>
+          </tr>
+          <tr>
+            <th>Documento</th>
+            <th>Numero</th>
+            <th>Razon social</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><span data-ng-bind="view.load.persona.tipoDocumento.abreviatura"></span></td>
+            <td><span data-ng-bind="view.load.persona.numeroDocumento"></span></td>
+            <td><span data-ng-bind="view.load.persona.razonSocial"></span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="border-top">
+    <legend><span class="text ng-scope">Datos financieros <i class="fa fa-question-circle text-muted ng-scope"
+                                                            tooltip="La tasa esta espresada porcentualmente y anual."
+                                                            tooltip-placement="right"></i></span></legend>
+    <div class="form-group" data-ng-class="{ 'has-error' : form.moneda.$invalid && form.$submitted }">
+      <label class="col-sm-2 control-label"><span class="required">*</span> Moneda:</label>
+      <div class="col-sm-3">
+        <ui-select name="moneda" data-ng-model="combo.selected.moneda" required>
+          <ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
+          <ui-select-choices repeat="item in combo.moneda | filter: $select.search">
+            <div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+        <div data-ng-messages="form.moneda.$error" data-ng-if="form.$submitted">
+          <div class="has-error" data-ng-message="required">Ingrese moneda.</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" data-ng-class="{ 'has-error' : form.tasa.$invalid && form.$submitted }">
+      <label class="col-sm-2 control-label"><span class="required">*</span> Tasa anual (%):</label>
+      <div class="col-sm-3">
+        <input type="text" name="tasa" data-ng-model="view.cuentaPersonal.tasa" data-ui-number-mask="2" data-min="0" data-max="100" class="form-control" required/>
+        <div data-ng-messages="form.tasa.$error" data-ng-if="form.tasa.$touched || form.$submitted">
+          <div class="has-error" data-ng-message="required">Ingrese tasa.</div>
+          <div class="has-error" data-ng-message="max">Valor maximo 100.</div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="border-top" data-ng-if="combo.selected.tipoCuenta.valor == 'PLAZO_FIJO'">
+    <legend><span class="text ng-scope">Datos de cuenta a plazo fijo <i class="fa fa-question-circle text-muted ng-scope"
+                                                             tooltip="Estos datos seran utilizados para el calculo de interes."
+                                                             tooltip-placement="right"></i></span></legend>
+    <div class="form-group" data-ng-class="{ 'has-error' : form.periodo.$invalid && form.$submitted }">
+      <label class="col-sm-2 control-label"><span class="required">*</span> Periodo (dias):</label>
+      <div class="col-sm-3">
+        <input type="text" name="periodo" data-ng-model="view.cuentaPersonal.periodo" data-ui-number-mask="0" data-min="1" data-max="1000" class="form-control" required/>
+        <div data-ng-messages="form.tasa.$error" data-ng-if="form.$submitted">
+          <div class="has-error" data-ng-message="required">Ingrese periodo.</div>
+          <div class="has-error" data-ng-message="max">Valor maximo 1000.</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" data-ng-class="{ 'has-error' : form.monto.$invalid && form.$submitted }">
+      <label class="col-sm-2 control-label"><span class="required">*</span> Monto deposito:</label>
+      <div class="col-sm-3">
+        <input type="text" name="monto" data-ng-model="view.cuentaPersonal.monto" data-ui-number-mask="2" data-min="1" data-max="100000" class="form-control" required/>
+        <div data-ng-messages="form.tasa.$error" data-ng-if="form.$submitted">
+          <div class="has-error" data-ng-message="required">Ingrese periodo.</div>
+          <div class="has-error" data-ng-message="max">Valor maximo 100000.</div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button sg-save ng-disabled="working">
+        <span ng-show="working">Guardando...</span>
+        <span ng-hide="working">Guardar</span>
+      </button>
+      <button sg-cancel ng-disabled="working" ui-sref="^.buscar">Cancelar</button>
+    </div>
+  </div>
+</form>

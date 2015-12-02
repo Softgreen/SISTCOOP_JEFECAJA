@@ -1,0 +1,101 @@
+<div ncy-breadcrumb></div>
+
+<h1><strong>Crear pendiente</strong></h1>
+
+<form name="form" class="form-horizontal" novalidate>
+
+  <div class="form-group" data-ng-if="view.load.pendienteRelacionado">
+    <label class="col-sm-2 control-label">Pendiente a pagar:</label>
+    <div class="col-sm-8">
+      <table class="table table-striped table-bordered table-condensed">
+        <thead>
+        <tr>
+          <th colspan="6">Pendiente a pagar</th>
+        </tr>
+        <tr>
+          <th>ID</th>
+          <th>MONTO DEUDA</th>
+          <th>MONEDA</th>
+          <th>TIPO</th>
+          <th>FECHA DE PENDIENTE</th>
+          <th>HORA DE PENDIENTE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><span data-ng-bind="view.load.pendienteRelacionado.id"></span></td>
+          <td><span data-ng-bind="view.load.pendienteRelacionado.moneda.simbolo"></span><span data-ng-bind="view.load.pendienteRelacionado.monto | currency: ''"></span></td>
+          <td><span data-ng-bind="view.load.pendienteRelacionado.moneda.denominacion"></span></td>
+          <td><span data-ng-bind="view.load.pendienteRelacionado.tipoPendiente"></span></td>
+          <td><span data-ng-bind="view.load.pendienteRelacionado.fecha | date: 'dd/MM/yyyy'"></span></td>
+          <td><span data-ng-bind="view.load.pendienteRelacionado.hora | date: 'HH:mm:ss'"></span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="form-group" data-ng-class="{ 'has-error' : form.boveda.$invalid && (form.boveda.$touched || form.$submitted)}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Boveda:</label>
+    <div class="col-sm-3">
+      <ui-select name="boveda" data-ng-model="combo.selected.boveda" pf-focused="true" autofocus required>
+        <ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
+        <ui-select-choices repeat="item in combo.boveda | filter: $select.search">
+          <div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+      <div data-ng-messages="form.boveda.$error" data-ng-if="form.$submitted">
+        <div class="has-error" data-ng-message="required">Ingrese boveda.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" data-ng-class="{ 'has-error' : form.tipo.$invalid && (form.tipo.$touched || form.$submitted)}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Tipo:</label>
+    <div class="col-sm-3">
+      <ui-select name="tipo" data-ng-model="combo.selected.tipo" required>
+        <ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
+        <ui-select-choices repeat="item in combo.tipo | filter: $select.search">
+          <div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+      <div data-ng-messages="form.tipo.$error" data-ng-if="form.$submitted">
+        <div class="has-error" data-ng-message="required">Ingrese tipo.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{ 'has-error' : form.monto.$invalid && form.$submitted}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Monto:</label>
+    <div class="col-sm-3">
+      <input type="text" name="monto" ng-model="view.pendiente.monto" class="form-control"
+             ui-number-mask="2" min="0" max="999999999"
+             ng-minlength="1" ng-maxlength="20"
+             placeholder="0.00" required/>
+      <div ng-messages="form.monto.$error" ng-if="form.$submitted">
+        <div class="has-error" ng-message="required">Ingrese monto.</div>
+        <div class="has-error" ng-message="maxlength">Maximo 20 caracteres.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" data-ng-class="{ 'has-error' : form.observacion.$invalid && form.$submitted }">
+    <label class="col-sm-2 control-label">Observacion:</label>
+    <div class="col-sm-3">
+      <textarea name="observacion" type="text" data-ng-model="view.pendiente.observacion" data-ng-minlength="1" data-ng-maxlength="200" class="form-control" capitalize />
+      <div data-ng-messages="form.observacion.$error" data-ng-if="form.$submitted">
+        <div class="has-error" data-ng-message="required">Ingrese observacion.</div>
+        <div class="has-error" data-ng-message="minlength">Ingrese observacion.</div>
+        <div class="has-error" data-ng-message="maxlength">Maximo 200 caracteres.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button sg-save ng-disabled="working">
+        <span ng-show="working">Guardando...</span>
+        <span ng-hide="working">Guardar</span>
+      </button>
+      <button sg-cancel ng-disabled="working" ui-sref="^.buscar">Cancelar</button>
+    </div>
+  </div>
+</form>

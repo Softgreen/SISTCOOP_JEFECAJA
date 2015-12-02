@@ -1,0 +1,80 @@
+<div ncy-breadcrumb></div>
+
+<h1><strong>Historial de cierre de caja</strong></h1>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div>
+
+      <div class="tab-container">
+
+        <div class="row row-cards-pf">
+          <div class="col-md-{{12 / view.load.balanceCaja.length}}">
+            <div class="card-pf card-pf-accented card-pf-aggregate-status">
+              <h2 class="card-pf-title">
+                <a href="#"><span class="fa fa-plus"></span><span class="card-pf-aggregate-status-count"></span> Ingresos</a>
+              </h2>
+              <div class="card-pf-body">
+                <p class="card-pf-aggregate-status-notifications" style="font-size: 18px;">
+                  <span class="card-pf-aggregate-status-notification" data-ng-repeat="voucher in view.load.balanceCaja">
+                    <a href="#"><span data-ng-bind="voucher.entradas | currency : voucher.moneda.simbolo"></span></a>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-{{12 / view.load.balanceCaja.length}}">
+            <div class="card-pf card-pf-accented card-pf-aggregate-status">
+              <h2 class="card-pf-title">
+                <a href="#"><span class="fa fa-minus"></span><span class="card-pf-aggregate-status-count"></span> Egresos</a>
+              </h2>
+              <div class="card-pf-body">
+                <p class="card-pf-aggregate-status-notifications" style="font-size: 18px;">
+                  <span class="card-pf-aggregate-status-notification" data-ng-repeat="voucher in view.load.balanceCaja">
+                    <a href="#"><span data-ng-bind="voucher.salidas | currency : voucher.moneda.simbolo"></span></a>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-{{12 / view.load.balanceCaja.length}}">
+            <div class="card-pf card-pf-accented card-pf-aggregate-status">
+              <h2 class="card-pf-title">
+                <a href="#"><span class="fa fa-shield"></span><span class="card-pf-aggregate-status-count"></span> Faltante/Sobrante</a>
+              </h2>
+              <div class="card-pf-body">
+                <p class="card-pf-aggregate-status-notifications" style="font-size: 18px;">
+                  <span class="card-pf-aggregate-status-notification" data-ng-repeat="voucher in view.load.balanceCaja">
+                    <a href="#" data-ng-if="voucher.faltante != 0"><span data-ng-bind="voucher.faltante | currency : voucher.moneda.simbolo"></span></a>
+                    <a href="#" data-ng-if="voucher.sobrante != 0"><span data-ng-bind="voucher.sobrante | currency : voucher.moneda.simbolo"></span></a>
+                    <a href="#" data-ng-if="voucher.sobrante == 0 && voucher.faltante == 0"><span data-ng-bind="0 | currency : voucher.moneda.simbolo"></span></a>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nav nav-tabs">
+          <li ui-sref-active="active">
+            <a href ui-sref=".resumen">
+              Resumen de operaciones
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a href ui-sref=".datosPrincipales">
+              Balance de caja
+            </a>
+          </li>
+        </ul>
+        <div class="tab-pane">
+          <br/>
+          <div ui-view></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

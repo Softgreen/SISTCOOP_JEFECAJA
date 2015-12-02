@@ -1,0 +1,66 @@
+<div ncy-breadcrumb></div>
+
+<h1><strong>Crear transacciones caja-caja</strong></h1>
+
+<form name="form" class="form-horizontal" novalidate>
+  <div class="form-group" ng-class="{ 'has-error' : form.caja.$invalid && form.$submitted}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Caja:</label>
+    <div class="col-sm-3">
+      <ui-select name="caja" ng-model="combo.selected.caja" pf-focused="true" autofocus required>
+        <ui-select-match placeholder="Caja">{{$select.selected.denominacion}}</ui-select-match>
+        <ui-select-choices repeat="item in combo.caja | filter: $select.search">
+          <div ng-bind-html="item.denominacion | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+      <div ng-messages="form.caja.$error" ng-if="form.$submitted">
+        <div class="has-error" ng-message="required">Ingrese caja.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{ 'has-error' : form.moneda.$invalid && form.$submitted}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Moneda:</label>
+    <div class="col-sm-3">
+      <ui-select name="moneda" ng-model="combo.selected.moneda" required>
+        <ui-select-match placeholder="Caja">{{$select.selected.denominacion}}</ui-select-match>
+        <ui-select-choices repeat="item in combo.moneda | filter: $select.search">
+          <div ng-bind-html="item.denominacion | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+      <div ng-messages="form.moneda.$error" ng-if="form.$submitted">
+        <div class="has-error" ng-message="required">Ingrese moneda.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{ 'has-error' : form.monto.$invalid && form.$submitted}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Monto:</label>
+    <div class="col-sm-3">
+      <input type="text" name="monto" ng-model="view.transaccion.monto" class="form-control"
+             ui-number-mask="2" min="0" max="999999999"
+             ng-minlength="1" ng-maxlength="20"
+             placeholder="0.00" required/>
+      <div ng-messages="form.monto.$error" ng-if="form.$submitted">
+        <div class="has-error" ng-message="required">Ingrese monto.</div>
+        <div class="has-error" ng-message="maxlength">Maximo 100 caracteres.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{ 'has-error' : form.referencia.$invalid && form.$submitted}">
+    <label class="col-sm-2 control-label">Observacion:</label>
+    <div class="col-sm-3">
+      <textarea name="observacion" ng-model="view.observacion" class="form-control" ng-maxlength="200"/>
+      <div ng-messages="form.observacion.$error" ng-if="form.$submitted">
+        <div class="has-error" ng-message="maxlength">Maximo 200 caracteres.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button sg-save ng-disabled="working">
+        <span ng-show="working">Guardando...</span>
+        <span ng-hide="working">Guardar</span>
+      </button>
+      <button sg-cancel ng-disabled="working" ui-sref="^.buscar">Cancelar</button>
+    </div>
+  </div>
+</form>

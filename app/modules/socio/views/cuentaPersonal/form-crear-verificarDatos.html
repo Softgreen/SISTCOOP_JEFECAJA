@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="cancel()">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title">¿Estas seguro de realizar esta operacion?</h4>
+</div>
+<div class="modal-body">
+  <fieldset class="border-top">
+    <legend><span class="text">Cuenta personal</span></legend>
+    <dl class="dl-horizontal left">
+      <dt>TIPO CUENTA:</dt>
+      <dd data-ng-bind="view.tipoCuenta.denominacion"></dd>
+      <dt>TIPO PERSONA:</dt>
+      <dd data-ng-bind="view.tipoPersona.denominacion"></dd>
+      <dt>DOCUMENTO:</dt>
+      <dd data-ng-bind-template="{{view.tipoDocumento.abreviatura}}:{{view.cuentaPersonal.numeroDocumento}}"></dd>
+
+      <dt data-ng-if="view.persona.nombres">Apellidos:</dt>
+      <dd data-ng-if="view.persona.nombres" data-ng-bind-template="{{view.persona.apellidoPaterno}}&nbsp;{{view.persona.apellidoMaterno}}"></dd>
+      <dt data-ng-if="view.persona.nombres">Nombres:</dt>
+      <dd data-ng-if="view.persona.nombres" data-ng-bind="view.persona.nombres"></dd>
+
+      <dt data-ng-if="view.persona.razonSocial">Razon social:</dt>
+      <dd data-ng-if="view.persona.razonSocial" data-ng-bind="view.persona.razonSocial"></dd>
+    </dl>
+  </fieldset>
+  <fieldset class="border-top">
+    <legend><span class="text">Datos financieros</span></legend>
+    <dl class="dl-horizontal left">
+      <dt>MONEDA:</dt>
+      <dd data-ng-bind="view.moneda.denominacion"></dd>
+      <dt>TEA:</dt>
+      <dd data-ng-bind="view.cuentaPersonal.tasa | number: 3"></dd>
+
+      <dt data-ng-if="view.cuentaPersonal.monto">MONTO APERTURA:</dt>
+      <dd data-ng-if="view.cuentaPersonal.monto" data-ng-bind="view.cuentaPersonal.monto | number: 2"></dd>
+      <dt data-ng-if="view.cuentaPersonal.periodo">PERIODO DEPOSITO:</dt>
+      <dd data-ng-if="view.cuentaPersonal.periodo" data-ng-bind="view.cuentaPersonal.periodo | number: 3"></dd>
+    </dl>
+  </fieldset>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" data-ng-click="ok()">Guardar</button>
+  <button class="btn btn-default" data-ng-click="cancel()">Cancelar</button>
+</div>

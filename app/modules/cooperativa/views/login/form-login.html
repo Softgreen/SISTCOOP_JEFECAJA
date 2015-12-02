@@ -1,0 +1,41 @@
+<form name="form" class="form-horizontal" novalidate>
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">
+      <span class="pficon pficon-close"></span>
+    </button>
+    <h4 class="modal-title">Login</h4>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-group" ng-class="{ 'has-error' : form.usuario.$invalid && form.$submitted}">
+      <label class="col-sm-4 control-label"><span class="required">*</span> Usuario:</label>
+
+      <div class="col-sm-4">
+        <input type="text" name="usuario" ng-model="view.usuario" ng-maxlength="50" pf-focused="true" autofocus
+               class="form-control" required/>
+        <div ng-messages="form.usuario.$error" ng-if="form.$submitted">
+          <div class="has-error" ng-message="required">Ingrese usuario.</div>
+          <div class="has-error" ng-message="maxlength">Maximo 50 caracteres.</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : form.password.$invalid && form.$submitted}">
+      <label class="col-sm-4 control-label"><span class="required">*</span> Password:</label>
+      <div class="col-sm-4">
+        <input type="password" name="password" ng-model="view.password" ng-maxlength="50" class="form-control" required/>
+        <div ng-messages="form.password.$error" ng-if="form.$submitted">
+          <div class="has-error" ng-message="required">Ingrese password.</div>
+          <div class="has-error" ng-message="maxlength">Maximo 50 caracteres.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button sg-save ng-disabled="working">
+      <span ng-show="working">Guardando...</span>
+      <span ng-hide="working">Guardar</span>
+    </button>
+    <button sg-cancel ng-disabled="working" data-ng-click="cancel()">Cancelar</button>
+  </div>
+</form>

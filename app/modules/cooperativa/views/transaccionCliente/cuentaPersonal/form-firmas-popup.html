@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="cancel()">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title">Firmas</h4>
+</div>
+<div class="modal-body">
+
+  <div data-ng-repeat="item in view.personas">
+    <img ng-if="item.urlFirma" ng-src="{{getUrlFirma(item)}}" alt="Firma"
+         class="img-thumbnail" style="height: 150px;">
+    <img ng-if="!item.urlFirma"
+         src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Firma"
+         class="img-thumbnail" style="height: 150px;">
+    <p data-ng-bind-template="{{item.apellidoPaterno}} {{item.apellidoMaterno}}, {{item.nombres}}"></p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" data-ng-click="cancel()">Cancelar</button>
+</div>

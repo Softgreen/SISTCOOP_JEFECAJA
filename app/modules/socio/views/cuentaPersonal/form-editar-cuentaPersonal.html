@@ -1,0 +1,66 @@
+<div ncy-breadcrumb></div>
+
+<h1>
+  <strong>Editar cuenta personal</strong>
+
+  <div class="pull-right">
+    <div class="btn-group">
+      <button type="button" data-ng ng-click="contrato()" class="btn btn-default">Contrato</button>
+    </div>
+    <div class="btn-group">
+      <button type="button" data-ng-if="view.cuentaPersonal.tipoCuenta == 'PLAZO_FIJO'" ng-click="renovarPlazoFijo()" class="btn btn-default">Renovar plazo fijo</button>
+      <button type="button" data-ng-if="view.cuentaPersonal.tipoCuenta == 'PLAZO_FIJO'" ng-click="recalcularPlazoFijo()" class="btn btn-default">Recalcular plazo fijo</button>
+    </div>
+    <div class="btn-group">
+      <button type="button" data-ng-if="view.cuentaPersonal.estadoCuenta == 'ACTIVO'" data-ng-click="congelar()" class="btn btn-default">Congelar</button>
+      <button type="button" data-ng-if="view.cuentaPersonal.estadoCuenta == 'CONGELADO'" data-ng-click="descongelar()" class="btn btn-default">Descongelar</button>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger">
+        <i class="pficon pficon-delete"></i>
+        <span>Cancelar</span>
+      </button>
+    </div>
+  </div>
+</h1>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div>
+      <div class="tab-container">
+        <ul class="nav nav-tabs">
+          <li ui-sref-active="active">
+            <a href ui-sref=".resumen">
+              Resumen
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a href ui-sref=".titular">
+              Titulares
+            </a>
+          </li>
+          <!--
+          <li ui-sref-active="active">
+            <a href ui-sref=".beneficiario">
+              Beneficiarios
+            </a>
+          </li>
+           -->
+          <li data-ng-if="view.cuentaPersonal.tipoCuenta == 'RECAUDADORA'" ui-sref-active="active">
+            <a href ui-sref=".chequera">
+              Chequeras
+            </a>
+          </li>
+        </ul>
+        <div class="tab-pane">
+          <br/>
+
+          <div ui-view></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

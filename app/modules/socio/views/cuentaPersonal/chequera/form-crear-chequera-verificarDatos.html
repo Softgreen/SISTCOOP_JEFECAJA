@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="cancel()">
+    <span class="pficon pficon-close"></span>
+  </button>
+  <h4 class="modal-title">&#191;Estas seguro de realizar esta operacion?</h4>
+</div>
+<div class="modal-body">
+  <fieldset class="border-top">
+    <legend><span class="text">Cliente</span></legend>
+    <dl class="dl-horizontal left">
+      <dt>Documento:</dt>
+      <dd data-ng-bind-template="{{view.cuentaPersonal.tipoDocumento}}: {{view.cuentaPersonal.numeroDocumento}}"></dd>
+      <dt>Cliente:</dt>
+      <dd data-ng-bind="view.cuentaPersonal.socio"></dd>
+    </dl>
+  </fieldset>
+  <fieldset class="border-top">
+    <legend><span class="text">Cuenta personal</span></legend>
+    <dl class="dl-horizontal left">
+      <dt>Tipo cuenta:</dt>
+      <dd data-ng-bind="view.cuentaPersonal.tipoCuenta"></dd>
+      <dt>Numero cuenta:</dt>
+      <dd data-ng-bind="view.cuentaPersonal.numeroCuenta"></dd>
+      <dt>Estado:</dt>
+      <dd data-ng-bind="view.cuentaPersonal.estadoCuenta | si_no : 'ACTIVO'"></dd>
+    </dl>
+  </fieldset>
+  <fieldset class="border-top">
+    <legend><span class="text">Chequera</span></legend>
+    <dl class="dl-horizontal left">
+      <dt>Cantidad de cheques:</dt>
+      <dd data-ng-bind="view.chequera.numeroFin - view.chequera.numeroInicio +1 | number : 0"></dd>
+      <dt>Numero inicio chequera:</dt>
+      <dd data-ng-bind="view.chequera.numeroInicio | number : 0"></dd>
+      <dt>Numero fin chequera:</dt>
+      <dd data-ng-bind="view.chequera.numeroFin | number : 0"></dd>
+    </dl>
+  </fieldset>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" data-ng-click="ok()">Guardar</button>
+  <button class="btn btn-default" data-ng-click="cancel()">Cancelar</button>
+</div>
