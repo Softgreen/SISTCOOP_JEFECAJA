@@ -1,0 +1,22 @@
+<br/>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+              <fieldset class="border-top">
+                <legend><span class="text">Datos principales</span></legend>
+                <dl class="dl-horizontal left">
+                  <dt>Moneda:</dt>
+                  <dd data-ng-bind="view.boveda.moneda.denominacion"></dd>
+                  <dt>Denominacion:</dt>
+                  <dd data-ng-bind="view.boveda.denominacion"></dd>
+                  <dt>Abierto:</dt>
+                  <dd data-ng-bind="view.boveda.estadoMovimiento | si_no : 'Abierto' | uppercase"></dd>
+                  <dt>Estado boveda:</dt>
+                  <dd data-ng-bind="view.boveda.estado | si_no : 'Activo' | uppercase"></dd>
+                </dl>
+              </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
