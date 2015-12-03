@@ -28,10 +28,10 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
     };
 
     $urlRouterProvider.when('/organizacion/app/estructura/bovedas', '/organizacion/app/estructura/bovedas/buscar');
-    //$urlRouterProvider.when('/organizacion/app/estructura/cajas', '/organizacion/app/estructura/cajas/buscar');
+    $urlRouterProvider.when('/organizacion/app/estructura/cajas', '/organizacion/app/estructura/cajas/buscar');
 
     $urlRouterProvider.when('/organizacion/app/estructura/bovedas/editar/:boveda', '/organizacion/app/estructura/bovedas/editar/:boveda/resumen');
-    //$urlRouterProvider.when('/organizacion/app/estructura/cajas/editar/:caja', '/organizacion/app/estructura/cajas/editar/:caja/resumen');
+    $urlRouterProvider.when('/organizacion/app/estructura/cajas/editar/:caja', '/organizacion/app/estructura/cajas/editar/:caja/resumen');
 
     //$urlRouterProvider.when('/organizacion/app/estructura/bovedas/editar/:boveda/historiales', '/organizacion/app/estructura/bovedas/editar/:boveda/historiales/buscar');
 
