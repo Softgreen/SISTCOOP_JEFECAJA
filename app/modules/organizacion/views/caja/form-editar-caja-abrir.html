@@ -7,7 +7,7 @@
                     <p ng-if="!view.loaded.detalle.length">No se encontró detalle de caja, si es la primera vez que abre
                         la caja haga click en GUARDAR, sino pongase en contacto con su administrador.</p>
                     <tabset ng-if="view.loaded.detalle.length">
-                        <tab ng-repeat="tab in view.loaded.detalle" heading="{{tab.moneda}}">
+                        <tab ng-repeat="tab in view.loaded.detalle" heading="{{tab.moneda.denominacion}}">
                             <table class="table table-bordered table-striped table-condensed table-hover">
                                 <thead>
                                 <tr>
@@ -23,7 +23,7 @@
                                     <td><span ng-bind="item.valor | currency: ''"></span></td>
                                     <td><span ng-bind="item.cantidad"></span></td>
                                     <td>
-                                        <span ng-bind="item.getSubTotal() | currency: ''"></span>
+                                        <span ng-bind="item.subtotal() | currency: ''"></span>
                                         &nbsp;
                                         <span ng-bind="tab.boveda.moneda"></span>
                                     </td>
@@ -32,17 +32,18 @@
                                 <tfoot>
                                 <tr>
                                     <th rowspan="1" colspan="3">Total:</th>
-                                    <th rowspan="1" colspan="1"><span ng-bind="tab.total | currency : ''"></span></th>
+                                    <th rowspan="1" colspan="1"><span ng-bind="total(tab.detalle) | currency : ''"></span></th>
                                 </tr>
                                 </tfoot>
                             </table>
                         </tab>
                     </tabset>
                     <p>
-                        <button type="submit" class="btn btn-primary" ladda="control.block" data-style="expand-right">
-                            Guardar
-                        </button>
-                        <button type="button" class="btn btn-default" ui-sref="^.resumen">Cancelar</button>
+                      <button sg-save ng-disabled="working">
+                        <span ng-show="working">Guardando...</span>
+                        <span ng-hide="working">Guardar</span>
+                      </button>
+                      <button sg-cancel ng-disabled="working" ui-sref="^.buscar">Cancelar</button>
                     </p>
                 </div>
             </div>

@@ -1,59 +1,62 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Caja.EditarCaja.AbrirController',
-    function ($scope, $state, caja, toastr) {
+angular.module('organizacion').controller('Organizacion.Caja.Editar.AbrirController',
+  function ($scope, $state, caja, toastr, CajaService) {
 
-        $scope.view = {
-            caja: caja
-        };
+    $scope.working = false;
 
-        $scope.view.loaded = {
-            detalle: []
-        };
+    $scope.view = {
+      caja: caja
+    };
 
-        $scope.loadDetalle = function () {
-            $scope.view.caja.$getDetalle().then(function (response) {
-                $scope.view.loaded.detalle = response;
+    $scope.view.loaded = {
+      detalle: []
+    };
 
-                angular.forEach($scope.view.loaded.detalle, function (row) {
-                    row.total = 0;
-                    angular.forEach(row.detalle, function (subRow) {
-                        subRow.getSubTotal = function () {
-                            return this.valor * this.cantidad;
-                        };
-                        row.total = row.total + (subRow.valor * subRow.cantidad);
-                    });
-                });
-            });
-        };
-        $scope.loadDetalle();
+    $scope.loadDetalle = function () {
+      CajaService.getDetalle($scope.view.caja.id).then(function (response) {
+        for (var i = 0; i < response.length; i++) {
+          angular.forEach(response[i].detalle, function (row) {
+            row.subtotal = function () {
+              return this.valor * this.cantidad;
+            };
+          });
+        }
+        $scope.view.loaded.detalle = response;
+      });
+    };
+    $scope.loadDetalle();
 
-        $scope.submit = function () {
+    $scope.total = function (detalle) {
+      var total = 0;
+      for (var i = 0; i < detalle.length; i++) {
+        total = total + detalle[i].subtotal();
+      }
+      return total;
+    };
 
-            if ($scope.view.caja.estado === false) {
-                toastr.info('Caja inactiva, no se puede actualizar');
-                return;
-            }
-            if ($scope.view.caja.abierto === true) {
-                toastr.warning('Caja abierta, no se puede abrir nuevamente');
-                return;
-            }
+    $scope.save = function () {
+      if ($scope.view.caja.estado === false) {
+        toastr.info('Caja inactiva, no se puede actualizar');
+        return;
+      }
+      if ($scope.view.caja.estadoMovimiento === true) {
+        toastr.warning('Caja abierta, no se puede abrir nuevamente');
+        return;
+      }
 
-            if ($scope.form.$valid) {
-                $scope.view.caja.$abrir().then(
-                    function (response) {
-                        toastr.success('Caja abierta');
-                        $scope.view.caja.abierto = true;
-                        $scope.view.caja.estadoMovimiento = true;
-                        $scope.loadDetalle();
-                    },
-                    function error(err) {
-                        toastr.error(err.data.message);
-                    }
-                );
-            }
+      $scope.working = true;
+      CajaService.abrirCaja($scope.view.caja.id).then(
+        function(response){
+          toastr.success('Caja abierta.');
+          $scope.working = false;
+          $state.go('^.resumen');
+        }, function error(err){
+          toastr.error(err.data.message);
+        }
+      );
 
-        };
+    };
 
-    });
+  });

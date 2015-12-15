@@ -80,20 +80,30 @@ angular.module('cooperativa').factory('CajaService', ['Restangular',
         return Restangular.one(baseUrl + '/voucherTransaccionCajaCaja/' + idTransaccionCajaCaja).get();
       },
 
-      crear: function(caja) {
+      crear: function (caja) {
         return Restangular.all(baseUrl).post(caja);
       },
-      actualizar: function(idCaja, caja) {
-        return Restangular.one(baseUrl+'/'+idCaja).customPUT(caja,'',{},{});
+      actualizar: function (idCaja, caja) {
+        return Restangular.one(baseUrl + '/' + idCaja).customPUT(caja, '', {}, {});
       },
-      crearTrabajador: function(idCaja, trabajador){
-        return Restangular.all(baseUrl+'/'+idCaja+'/trabajadores').post(trabajador);
+      crearTrabajador: function (idCaja, trabajador) {
+        return Restangular.all(baseUrl + '/' + idCaja + '/trabajadores').post(trabajador);
       },
-      getTrabajadorse: function(idCaja){
-        return Restangular.all(baseUrl+'/'+idCaja+'/trabajadores').getList();
+      getTrabajadorse: function (idCaja) {
+        return Restangular.all(baseUrl + '/' + idCaja + '/trabajadores').getList();
       },
-      eliminarTrabajador: function(idCaja, idTrabajador){
-        return Restangular.all(baseUrl+'/'+idCaja+'/trabajadores/'+idTrabajador).remove();
+      eliminarTrabajador: function (idCaja, idTrabajador) {
+        return Restangular.all(baseUrl + '/' + idCaja + '/trabajadores/' + idTrabajador).remove();
+      },
+
+      abrirCaja: function(idCaja){
+        return Restangular.all(baseUrl+"/"+idCaja+"/abrir").post();
+      },
+      congelar: function(idBoveda) {
+        return Restangular.one(baseUrl+"/"+idBoveda+"/congelar").post();
+      },
+      descongelar: function(idBoveda) {
+        return Restangular.one(baseUrl+"/"+idBoveda+"/descongelar").post();
       }
 
     };

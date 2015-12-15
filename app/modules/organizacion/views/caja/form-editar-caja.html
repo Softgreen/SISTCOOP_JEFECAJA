@@ -13,10 +13,25 @@
 			Abrir
 		</a>
 	</li>
-	<li class="pull-right">
-		<div class="btn-group">
-			<button type="button" data-ng-click="desactivar()" class="btn btn-danger">Desactivar</button>
-		</div>
-	</li>
+  <li class="pull-right">
+    <div class="btn-group">
+      <a href="" ui-sref=".abrir" class="btn btn-default">Abrir</a>
+    </div>
+
+    <!-- Split button -->
+    <div class="btn-group" uib-dropdown>
+      <button id="split-button" type="button" class="btn btn-default">Otras operaciones</button>
+      <button type="button" class="btn btn-default" uib-dropdown-toggle>
+        <span class="caret"></span>
+        <span class="sr-only">Split button!</span>
+      </button>
+      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="split-button">
+        <li role="menuitem"><a href="#" data-ng-click="congelar()">Congelar</a></li>
+        <li role="menuitem"><a href="#" data-ng-click="descongelar()">Descongelar</a></li>
+        <li class="divider"></li>
+        <li role="menuitem"><a href="#" data-ng-click="desactivar()">Desactivar</a></li>
+      </ul>
+    </div>
+  </li>
 </ul>
 <div ui-view></div>
