@@ -2,54 +2,73 @@
 
 <h1><strong>Crear caja</strong></h1>
 
-<form name="form" sg-read-only="!(access.administrarCajas || access.administrarCajasAgencia)" class="form-horizontal" novalidate>
+<form name="form" class="form-horizontal" novalidate>
 
-	<div class="form-group" ng-class="{ 'has-error' : form.sucursal.$invalid && form.$submitted}">
-		<label class="col-sm-2 control-label"><span class="required">*</span> Sucursal:</label>
-		<div class="col-sm-3">
-			<ui-select name="sucursal" ng-model="combo.selected.sucursal" ng-disabled="!(access.administrarBovedas || access.administrarBovedasAgencia)" autofocus required>
-				<ui-select-match placeholder="Sucursal">{{$select.selected.denominacion}}</ui-select-match>
-				<ui-select-choices repeat="item in combo.sucursal | filter: $select.search">
-					<div ng-bind-html="item.denominacion | highlight: $select.search"></div>
-				</ui-select-choices>
-			</ui-select>
-			<div ng-messages="form.sucursal.$error" ng-if="form.sucursal.$touched || form.$submitted">
-				<div class="has-error" ng-message="required">Ingrese sucursal.</div>
-			</div>
-		</div>
-	</div>
-	<div class="form-group" ng-class="{ 'has-error' : form.agencia.$invalid && form.$submitted}">
-		<label class="col-sm-2 control-label"><span class="required">*</span> Agencia:</label>
-		<div class="col-sm-3">
-			<ui-select name="agencia" ng-model="combo.selected.agencia" ng-disabled="!(access.administrarBovedas || access.administrarBovedasAgencia)" required>
-				<ui-select-match placeholder="Agencia">{{$select.selected.denominacion}}</ui-select-match>
-				<ui-select-choices repeat="item in combo.agencia | filter: $select.search">
-					<div ng-bind-html="item.denominacion | highlight: $select.search"></div>
-				</ui-select-choices>
-			</ui-select>
-			<div ng-messages="form.sucursal.$error" ng-if="form.agencia.$touched || form.$submitted">
-				<div class="has-error" ng-message="required">Ingrese agencia.</div>
-			</div>
-		</div>
-	</div>
-	<div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted}">
-		<label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
-		<div class="col-sm-3">
-			<input type="text" name="denominacion" ng-model="view.caja.denominacion" ng-maxlength="60" class="form-control" required/>
-			<div ng-messages="form.denominacion.$error" ng-if="form.denominacion.$touched || form.$submitted">
-				<div class="has-error" ng-message="required">Ingrese denominacion.</div>
-				<div class="has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
-			</div>
-		</div>
-	</div>
+  <fieldset class="border-top">
+    <legend><span class="text ng-scope">Datos principales <i class="fa fa-question-circle text-muted ng-scope" tooltip="Datos principales." tooltip-placement="right"></i></span>  <kc-tooltip class="hidden"></kc-tooltip></legend>
+    <div class="form-group">
+      <label class="col-sm-2 control-label"><span class="required">*</span> Agencia:</label>
+      <div class="col-sm-6">
+        <input name="agencia" type="text" data-ng-model="view.agencia.denominacion" class="form-control" required disabled/>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted}">
+      <label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
+      <div class="col-sm-3">
+        <input type="text" name="denominacion" ng-model="view.caja.denominacion" ng-maxlength="60" class="form-control" pf-focused="true" autofocus required/>
+        <div ng-messages="form.denominacion.$error" ng-if="form.$submitted">
+          <div class="has-error" ng-message="required">Ingrese denominacion.</div>
+          <div class="has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : form.abreviatura.$invalid && form.$submitted}">
+      <label class="col-sm-2 control-label"><span class="required">*</span> Abreviatura:</label>
+      <div class="col-sm-3">
+        <input type="text" name="abreviatura" ng-model="view.caja.abreviatura" ng-maxlength="10" class="form-control" required/>
+        <div ng-messages="form.abreviatura.$error" ng-if="form.$submitted">
+          <div class="has-error" ng-message="required">Ingrese denominacion.</div>
+          <div class="has-error" ng-message="maxlength">Maximo 10 caracteres.</div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="border-top">
+    <legend><span class="text ng-scope">Asignar bovedas <i class="fa fa-question-circle text-muted ng-scope" tooltip="Asignar bovedas." tooltip-placement="right"></i></span>  <kc-tooltip class="hidden"></kc-tooltip></legend>
+    <div class="form-group">
+      <label class="col-md-2 control-label">Bovedas asignadas:</label>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-3">
+            <label class="control-label">Bovedas disponibles <i class="fa fa-question-circle text-muted" tooltip="Bovedas existentes en la agencia." tooltip-placement="right"></i></label>
+            <select class="form-control" multiple size="5" ng-multiple="true" ng-model="combo.selected.bovedaDisponible" ng-options="c.denominacion for c in combo.bovedaDisponible">
+            </select>
+            <button class="btn btn-default" type="button" ng-click="addBovedas()" tooltip="Asignar bovedas" tooltip-placement="right">
+              Asignar seleccionados <i class="fa fa-angle-double-right"></i>
+            </button>
+          </div>
+          <div class="col-md-3">
+            <label class="control-label">Bovedas asignadas <i class="fa fa-question-circle text-muted" tooltip="Bovedas asignadas a la caja." tooltip-placement="right"></i></label>
+            <select class="form-control" multiple size="5" ng-multiple="true" ng-model="combo.selected.bovedaAsignada" ng-options="c.denominacion for c in combo.bovedaAsignada">
+            </select>
+            <button class="btn btn-default" type="button" ng-click="removeBovedas()" tooltip="Remover bovedas" tooltip-placement="right">
+              <i class="fa fa-angle-double-left"></i> Remover seleccionados
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
 
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<button sg-save data-ng-disabled="changed">Guardar</button>
-			<button sg-cancel ui-sref="^.buscar" data-ng-disabled="changed">Cancelar</button>
-			<div class="spinner spinner-inline" data-ng-show="changed" style="vertical-align: middle;"></div>
-		</div>
-	</div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button sg-save ng-disabled="working">
+        <span ng-show="working">Guardando...</span>
+        <span ng-hide="working">Guardar</span>
+      </button>
+      <button sg-cancel ng-disabled="working" ui-sref="^.buscar">Cancelar</button>
+    </div>
+  </div>
 
 </form>
 

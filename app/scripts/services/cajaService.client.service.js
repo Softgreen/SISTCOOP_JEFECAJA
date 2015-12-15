@@ -8,7 +8,7 @@ angular.module('cooperativa').factory('CajaService', ['Restangular',
 
     return {
       findById: function (idCaja) {
-        return Restangular.one(baseUrl + "/" + idCaja).get();
+        return Restangular.one(baseUrl + '/' + idCaja).get();
       },
       getCajas: function (idAgencia) {
         return Restangular.all(baseUrl).getList({idAgencia: idAgencia});
@@ -78,7 +78,24 @@ angular.module('cooperativa').factory('CajaService', ['Restangular',
       },
       getVoucherTransaccionCajaCaja: function (idTransaccionCajaCaja) {
         return Restangular.one(baseUrl + '/voucherTransaccionCajaCaja/' + idTransaccionCajaCaja).get();
+      },
+
+      crear: function(caja) {
+        return Restangular.all(baseUrl).post(caja);
+      },
+      actualizar: function(idCaja, caja) {
+        return Restangular.one(baseUrl+'/'+idCaja).customPUT(caja,'',{},{});
+      },
+      crearTrabajador: function(idCaja, trabajador){
+        return Restangular.all(baseUrl+'/'+idCaja+'/trabajadores').post(trabajador);
+      },
+      getTrabajadorse: function(idCaja){
+        return Restangular.all(baseUrl+'/'+idCaja+'/trabajadores').getList();
+      },
+      eliminarTrabajador: function(idCaja, idTrabajador){
+        return Restangular.all(baseUrl+'/'+idCaja+'/trabajadores/'+idTrabajador).remove();
       }
+
     };
 
   }]);
