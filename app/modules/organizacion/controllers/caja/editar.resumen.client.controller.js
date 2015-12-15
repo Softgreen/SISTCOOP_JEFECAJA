@@ -1,32 +1,37 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Caja.Editar.ResumenController',
-    function ($scope, caja) {
+angular.module('organizacion').controller('Organizacion.Caja.Editar.ResumenController',
+  function ($scope, toastr, caja, CajaService) {
 
-        $scope.view = {
-            caja: caja
-        };
+    $scope.view = {
+      caja: caja
+    };
 
-        $scope.view.load = {
-            agencia: undefined,
-            bovedaCajas: [],
-            trabajadorCajas: []
-        };
+    $scope.view.load = {
+      agencia: undefined,
+      bovedas: [],
+      trabajadores: []
+    };
 
-        $scope.loadAgencia = function () {
-            //$scope.view.load.agencia = SGAgencia.$findByUrl($scope.view.caja.agencia).$object;
-        };
-        $scope.loadAgencia();
+    $scope.loadAgencia = function () {
+      //$scope.view.load.agencia = SGAgencia.$findByUrl($scope.view.caja.agencia).$object;
+    };
+    $scope.loadAgencia();
 
-        $scope.loadBovedaCajas = function () {
-            //$scope.view.load.bovedaCajas = $scope.view.caja.SGBovedaCaja().$search().$object;
-        };
-        $scope.loadBovedaCajas();
+    $scope.loadBovedas = function () {
+      CajaService.getBovedas($scope.view.caja.id).then(function (response) {
+        $scope.view.load.bovedas = response;
+      });
+    };
+    $scope.loadBovedas();
 
-        $scope.loadTrabajadorCajas = function () {
-            //$scope.view.load.trabajadorCajas = $scope.view.caja.SGTrabajadorCaja().$search().$object;
-        };
-        $scope.loadTrabajadorCajas();
+    $scope.loadTrabajadores = function () {
+      CajaService.getTrabajadorse($scope.view.caja.id).then(
+        function (response) {
+          $scope.view.load.trabajadores = response;
+        });
+    };
+    $scope.loadTrabajadores();
 
-    });
+  });
