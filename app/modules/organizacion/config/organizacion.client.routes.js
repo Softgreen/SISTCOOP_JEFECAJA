@@ -144,6 +144,16 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
           label: 'Datos principales'
         }
       })
+      .state('organizacion.app.estructura.boveda.editar.abrir', {
+        url: '/abrir',
+        templateUrl: 'modules/organizacion/views/boveda/form-editar-boveda-abrir.html',
+        controller: 'Organizacion.Boveda.Editar.AbrirController',
+        resolve: {},
+        ncyBreadcrumb: {
+          label: 'Abrir boveda'
+        }
+      })
+
       //HistorialBoveda
       .state('organizacion.app.estructura.boveda.editar.historial', {
         url: '/historiales',

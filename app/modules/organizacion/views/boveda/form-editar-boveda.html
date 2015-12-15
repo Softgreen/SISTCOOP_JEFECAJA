@@ -8,6 +8,11 @@
 			Resumen
 		</a>
 	</li>
+  <li ui-sref-active="active">
+    <a href ui-sref=".abrir">
+      Abrir
+    </a>
+  </li>
   <!--
 	<li ui-sref-active="active">
 		<a href ui-sref=".datosPrincipales">
@@ -22,8 +27,7 @@
 	-->
 	<li class="pull-right">
     <div class="btn-group">
-      <button type="button" data-ng-click="abrir()" class="btn btn-default">Abrir</button>
-      <button type="button" data-ng-click="cerrar()" class="btn btn-default">Cerrar</button>
+      <a href="" ui-sref=".abrir" class="btn btn-default">Abrir</a>
     </div>
 
     <!-- Split button -->

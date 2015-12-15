@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.DatosPrincipalesController',
+angular.module('organizacion').controller('Organizacion.Boveda.Editar.DatosPrincipalesController',
 	function ($scope, boveda, toastr) {
 
 		$scope.changed = false;
@@ -27,7 +27,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.DatosPrincip
 					toastr.success('Boveda actualizada');
 				},
 				function error(err) {
-					toastr.error(err.data.message);
+          toastr.error(err.data.message);
 				}
 			);
 		};
