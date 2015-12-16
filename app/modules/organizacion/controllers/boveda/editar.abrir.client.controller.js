@@ -49,6 +49,7 @@ angular.module('cooperativa').controller('Organizacion.Boveda.Editar.AbrirContro
         function(response){
           toastr.success('Boveda abierta.');
           $scope.working = false;
+          boveda.estadoMovimiento = true;
           $state.go('^.resumen');
         },
         function error(err){

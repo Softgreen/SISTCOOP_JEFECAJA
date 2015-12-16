@@ -1,0 +1,82 @@
+<br/>
+<form name="form" data-ng-submit="submit()" novalidate>
+
+  <fieldset class="border-top">
+    <legend><span class="text ">Cerrar historial boveda <i class="fa fa-question-circle text-muted" tooltip="Cerrar boveda." tooltip-placement="right"></i></span></legend>
+    <div class="form-group">
+      <label class="col-md-2 control-label">Denominaciones: <i class="fa fa-question-circle text-muted" tooltip="Denominaciones con las que se cerrara la boveda." tooltip-placement="right"></i></label>
+      <div class="col-md-5">
+        <table ng-if="view.load.detalleOld.length" class="table table-bordered table-striped table-condensed table-hover">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Valor</th>
+            <th>Cantidad</th>
+            <th>Sub total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in view.load.detalleOld | orderBy: 'valor'">
+            <td><span ng-bind="$index+1"></span></td>
+            <td><span ng-bind="item.valor | currency: ''"></span></td>
+            <td><span ng-bind="item.cantidad"></span></td>
+            <td>
+              <span ng-bind="item.subtotal() | currency: ''"></span>
+              &nbsp;
+              <span ng-bind="view.boveda.moneda.simbolo"></span>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th rowspan="1" colspan="3">Total:</th>
+            <th rowspan="1" colspan="1"><span ng-bind="getTotal() | currency : ''"></span></th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="col-md-5">
+        <table ng-if="view.load.detalleNew.length" class="table table-bordered table-striped table-condensed table-hover">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Valor</th>
+            <th>Cantidad</th>
+            <th>Sub total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in view.load.detalleOld | orderBy: 'valor'">
+            <td><span ng-bind="$index+1"></span></td>
+            <td><span ng-bind="item.valor | currency: ''"></span></td>
+            <td><span ng-bind="item.cantidad"></span></td>
+            <td>
+              <span ng-bind="item.subtotal() | currency: ''"></span>
+              &nbsp;
+              <span ng-bind="view.boveda.moneda.simbolo"></span>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th rowspan="1" colspan="3">Total:</th>
+            <th rowspan="1" colspan="1"><span ng-bind="getTotal(item) | currency : ''"></span></th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button sg-save ng-disabled="working">
+        <span ng-show="working">Guardando...</span>
+        <span ng-hide="working">Guardar</span>
+      </button>
+      <button sg-cancel ng-disabled="working" ui-sref="^.resumen">Cancelar</button>
+    </div>
+  </div>
+
+</form>
+<br/>

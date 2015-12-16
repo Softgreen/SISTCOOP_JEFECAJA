@@ -153,6 +153,15 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
           label: 'Abrir boveda'
         }
       })
+      .state('organizacion.app.estructura.boveda.editar.cerrar', {
+        url: '/cerrar',
+        templateUrl: 'modules/organizacion/views/boveda/form-editar-boveda-cerrar.html',
+        controller: 'Organizacion.Boveda.Editar.CerrarController',
+        resolve: {},
+        ncyBreadcrumb: {
+          label: 'Cerrar boveda'
+        }
+      })
 
       //Cajas
       .state('organizacion.app.estructura.caja', {
