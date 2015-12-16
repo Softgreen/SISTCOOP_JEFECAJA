@@ -213,6 +213,15 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
           label: 'Datos principales'
         }
       })
+      .state('organizacion.app.estructura.caja.editar.trabajador', {
+        url: '/trabajadores',
+        templateUrl: 'modules/organizacion/views/caja/form-editar-caja-trabajadores.html',
+        controller: 'Organizacion.Caja.Editar.TrabajadoresController',
+        resolve: {},
+        ncyBreadcrumb: {
+          label: 'Asignar trabajadores'
+        }
+      })
       .state('organizacion.app.estructura.caja.editar.abrir', {
         url: '/abrir',
         templateUrl: 'modules/organizacion/views/caja/form-editar-caja-abrir.html',

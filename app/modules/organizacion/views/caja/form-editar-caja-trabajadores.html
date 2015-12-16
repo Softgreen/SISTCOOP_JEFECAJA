@@ -1,0 +1,29 @@
+</br>
+<div class="row">
+  <div class="col-sm-6">
+
+  </div>
+  <div class="col-sm-6">
+    <fieldset class="border-top">
+      <legend><span class="text">Trabajadores asignados</span></legend>
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Trabajador</th>
+          <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="item in view.load.trabajadores">
+          <td data-ng-bind="$index"></td>
+          <td data-ng-bind-template="{{item.personaNatural.apellidoPaterno}}&nbsp;{{item.personaNatural.apellidoMaterno}},&nbsp;{{item.personaNatural.nombres}}"></td>
+          <td>
+            <button type="button" data-ng-click="eliminar(item)" class="btn btn-danger btn-xs">Eliminar</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </fieldset>
+  </div>
+</div>

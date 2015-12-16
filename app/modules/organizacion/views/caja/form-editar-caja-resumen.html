@@ -60,7 +60,7 @@
             <tbody>
             <tr data-ng-repeat="item in view.load.trabajadores">
               <td data-ng-bind="$index"></td>
-              <td data-ng-bind="item.personaNatural.apellidoPaterno"></td>
+              <td data-ng-bind-template="{{item.personaNatural.apellidoPaterno}}&nbsp;{{item.personaNatural.apellidoMaterno}},&nbsp;{{item.personaNatural.nombres}}"></td>
             </tr>
             </tbody>
           </table>
