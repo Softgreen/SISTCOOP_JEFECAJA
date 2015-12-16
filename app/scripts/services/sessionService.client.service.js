@@ -89,9 +89,13 @@ angular.module('socio').factory('SessionService', ['Restangular',
                 var copy = Restangular.copy(detalle);
                 return Restangular.all(baseUrl + '/transaccionBovedaCaja/CAJA').post(copy, {'boveda': boveda});
             },
-            crearTransaccionBovedaCajaOrigenBoveda: function (boveda, detalle) {
+            /*crearTransaccionBovedaCajaOrigenBoveda: function (boveda, detalle) {
                 var copy = Restangular.copy(detalle);
                 return Restangular.all(baseUrl + '/transaccionBovedaCaja/BOVEDA').post(copy, {'boveda': boveda});
+            },*/
+            crearTransaccionBovedaCajaOrigenBoveda: function(boveda, detalle, caja){
+              var copy = Restangular.copy(detalle);
+              return Restangular.all(baseUrl+'/transaccionBovedaCaja/BOVEDA').post(copy ,{'boveda':boveda, 'caja':caja});
             },
             crearTransaccionCajaCaja: function (idCaja, idMoneda, monto, observacion) {
                 /* jshint ignore:start */
