@@ -24,6 +24,12 @@ angular.module('rrhh').factory('TrabajadorService', ['Restangular',
 
             findById: function (idSucursal) {
                 return Restangular.one(baseUrl + '/' + idSucursal).get();
+            },
+            findByTipoNumeroDocumento: function (idTipoDocumento, numeroDocumento) {
+              return Restangular.one(baseUrl + '/buscar').get({
+                idTipoDocumento: idTipoDocumento,
+                numeroDocumento: numeroDocumento
+              }, {});
             }
         };
 
