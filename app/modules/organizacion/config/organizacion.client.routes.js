@@ -35,18 +35,11 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
     $urlRouterProvider.when('/organizacion/app/estructura/bovedas/editar/:boveda', '/organizacion/app/estructura/bovedas/editar/:boveda/resumen');
     $urlRouterProvider.when('/organizacion/app/estructura/cajas/editar/:caja', '/organizacion/app/estructura/cajas/editar/:caja/resumen');
 
-    //$urlRouterProvider.when('/organizacion/app/estructura/bovedas/editar/:boveda/historiales', '/organizacion/app/estructura/bovedas/editar/:boveda/historiales/buscar');
-
-    //$urlRouterProvider.when('/organizacion/app/estructura/bovedas/editar/:boveda/historiales/editar/:historial', '/organizacion/app/estructura/bovedas/editar/:boveda/historiales/editar/:historial/resumen');
-
-    //$urlRouterProvider.when('/organizacion/app/estructura/bovedas/editar/:boveda/historiales/editar/:historial/transaccionesBovedaCaja', '/organizacion/app/estructura/bovedas/editar/:boveda/historiales/editar/:historial/transaccionesBovedaCaja/buscar');
-
-    //$urlRouterProvider.when('/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas', '/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/buscar');
-
-    //$urlRouterProvider.when('/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/editar/:bovedaCaja', '/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/editar/:bovedaCaja/resumen');
-    //$urlRouterProvider.when('/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/editar/:bovedaCaja/historiales', '/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/editar/:bovedaCaja/historiales/buscar');
     $urlRouterProvider.when('/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/editar/:bovedaCaja', '/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/editar/:bovedaCaja/historiales/buscar');
     $urlRouterProvider.when('/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/editar/:bovedaCaja/historiales/editar/:historial', '/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/editar/:bovedaCaja/historiales/editar/:historial/resumen');
+
+    $urlRouterProvider.when('/organizacion/app/transaccionInterna/transaccionesBovedaCaja', '/organizacion/app/transaccionInterna/transaccionesBovedaCaja/buscar');
+
     $stateProvider
       .state('organizacion', {
         abstract: true,
@@ -243,243 +236,32 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
         }
       })
 
-      //BovedaCajas
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja', {
-        url: '/bovedaCajas',
+      //Transacciones internas
+      .state('organizacion.app.transaccionInterna.bovedaCaja', {
+        url: '/transaccionesBovedaCaja',
         template: '<div ui-view></div>',
         ncyBreadcrumb: {
           skip: true // Never display this state in breadcrumb.
         }
       })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.buscar', {
+      .state('organizacion.app.transaccionInterna.bovedaCaja.buscar', {
         url: '/buscar',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/form-buscar-bovedaCaja.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.BuscarController',
-        resolve: {},
-        ncyBreadcrumb: {
-          label: 'Bovedas'
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.crear', {
-        url: '/crear',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/form-crear-bovedaCaja.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.CrearController',
-        resolve: {},
-        ncyBreadcrumb: {
-          label: 'Crear Boveda-Caja',
-          parent: 'organizacion.app.estructura.caja.editar.bovedaCaja.buscar'
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar', {
-        url: '/editar/:bovedaCaja',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/form-editar-bovedaCaja.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.EditarController',
-        resolve: {
-
-          bovedaCaja: function ($state, $stateParams, caja) {
-            return caja.SGBovedaCaja().$find($stateParams.bovedaCaja);
-          }
-        },
-        ncyBreadcrumb: {
-          label: 'Editar boveda-caja',
-          parent: 'organizacion.app.estructura.caja.editar.bovedaCaja.buscar'
-        }
-      })
-      //HistorialBovedacaja
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial', {
-        url: '/historiales',
-        template: '<div ui-view></div>',
-        ncyBreadcrumb: {
-          skip: true // Never display this state in breadcrumb.
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.buscar', {
-        url: '/buscar',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/form-buscar-historial.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.Historial.BuscarController',
+        templateUrl: 'modules/organizacion/views/transaccionInterna/bovedaCaja/form-buscar-transaccionBovedaCaja.html',
+        controller: 'Organizacion.TransaccionInterna.BovedaCaja.BuscarController',
         resolve: {},
         ncyBreadcrumb: {
           label: 'Home'
         }
       })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.crear', {
+      .state('organizacion.app.transaccionInterna.bovedaCaja.crear', {
         url: '/crear',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/form-crear-historial.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.Historial.CrearController',
+        templateUrl: 'modules/organizacion/views/transaccionInterna/bovedaCaja/form-crear-transaccionBovedaCaja.html',
+        controller: 'Organizacion.TransaccionInterna.BovedaCaja.CrearController',
         resolve: {},
         ncyBreadcrumb: {
-          label: 'Crear Historial',
-          parent: 'organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.buscar'
+          label: 'Crear transaccion boveda-caja',
+          parent: 'organizacion.app.transaccionInterna.bovedaCaja.buscar'
         }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar', {
-        url: '/editar/:historial',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/form-editar-historial.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.Historial.EditarController',
-        resolve: {
-
-          historial: function ($state, $stateParams, bovedaCaja) {
-            return bovedaCaja.SGHistorialBovedaCaja().$find($stateParams.historial);
-          }
-        },
-        ncyBreadcrumb: {
-          label: 'Editar caja',
-          parent: 'organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.buscar'
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar.resumen', {
-        url: '/resumen',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/form-editar-historial-resumen.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.Historial.Editar.ResumenController',
-        resolve: {},
-        ncyBreadcrumb: {
-          label: 'Editar caja',
-          parent: 'organizacion.app.estructura.caja.buscar'
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar.cerrar', {
-        url: '/cerrar',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/form-editar-historial-cerrar.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.Historial.Editar.CerrarController',
-        resolve: {},
-        ncyBreadcrumb: {
-          label: 'Cerrar caja'
-        }
-      })
-      //TransaccionBoevdaCaja
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar.transaccionBovedaCaja', {
-        url: '/historiales',
-        template: '<div ui-view></div>',
-        ncyBreadcrumb: {
-          skip: true // Never display this state in breadcrumb.
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar.transaccionBovedaCaja.buscar', {
-        url: '/buscar',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/transaccionBovedaCaja/form-buscar-transaccionBovedaCaja.html',
-        controller: 'Organizacion.Caja.BovedaCaja.Historial.TransaccionBovedaCaja.BuscarController',
-        resolve: {},
-        ncyBreadcrumb: {
-          label: 'Editar caja',
-          parent: 'organizacion.app.estructura.caja.buscar'
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar.transaccionBovedaCaja.crear', {
-        url: '/crear',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/transaccionBovedaCaja/form-crear-transaccionBovedaCaja.html',
-        controller: 'Organizacion.Caja.BovedaCaja.Historial.TransaccionBovedaCaja.CrearController',
-        resolve: {},
-        ncyBreadcrumb: {
-          label: 'crear caja'
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar.transaccionBovedaCaja.editar', {
-        url: '/editar/:transaccion',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/transaccionBovedaCaja/form-editar-transaccionBovedaCaja.html',
-        controller: 'Organizacion.Caja.BovedaCaja.Historial.TransaccionBovedaCaja.EditarController',
-        resolve: {
-          transaccion: function ($state, $stateParams, historial) {
-            return historial.SGTransaccionBovedaCaja().$find($stateParams.transaccion);
-          }
-        },
-        ncyBreadcrumb: {
-          label: 'Editar transaccion'
-        }
-      })
-      //TransaccionCajacaja
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar.transaccionCajaCaja', {
-        url: '/transaccionesCajaCaja',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/transaccionBovedaCaja/form-editar-historial-resumen.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.Historial.Editar.TransaccionBovedaCaja.BuscarController',
-        resolve: {
-
-          caja: function ($state, $stateParams, SGCaja) {
-            return SGCaja.$find($stateParams.caja);
-          }
-        },
-        ncyBreadcrumb: {
-          label: 'Editar caja',
-          parent: 'organizacion.app.estructura.caja.buscar'
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar.transaccionCajaCaja.buscar', {
-        url: '/buscar',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/transaccionBovedaCaja/form-editar-historial-resumen.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.Historial.Editar.TransaccionBovedaCaja.BuscarController',
-        resolve: {
-          caja: function ($state, $stateParams, SGCaja) {
-            return SGCaja.$find($stateParams.caja);
-          }
-        },
-        ncyBreadcrumb: {
-          label: 'Editar caja',
-          parent: 'organizacion.app.estructura.caja.buscar'
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar.transaccionCajaCaja.crear', {
-        url: '/crear',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/transaccionBovedaCaja/form-editar-historial-resumen.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.Historial.Editar.TransaccionBovedaCaja.BuscarController',
-        resolve: {
-          caja: function ($state, $stateParams, SGCaja) {
-            return SGCaja.$find($stateParams.caja);
-          }
-        },
-        ncyBreadcrumb: {
-          label: 'Editar caja',
-          parent: 'organizacion.app.estructura.caja.buscar'
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.bovedaCaja.editar.historial.editar.transaccionCajaCaja.editar', {
-        url: '/editar/:transaccion',
-        templateUrl: 'modules/organizacion/views/caja/bovedaCaja/historial/transaccionBovedaCaja/form-editar-historial-resumen.html',
-        controller: 'Organizacion.Caja.Editar.BovedaCaja.Historial.Editar.TransaccionBovedaCaja.BuscarController',
-        resolve: {
-
-          caja: function ($state, $stateParams, SGCaja) {
-            return SGCaja.$find($stateParams.caja);
-          }
-        },
-        ncyBreadcrumb: {
-          label: 'Editar caja',
-          parent: 'organizacion.app.estructura.caja.buscar'
-        }
-      })
-
-      .state('organizacion.app.estructura.caja.editar.editar.boveda', {
-        url: '/buscar',
-        templateUrl: 'modules/organizacion/views/caja/form-editar-caja-bovedas.html',
-        controller: 'Organizacion.Caja.Editar.BovedaController',
-        resolve: {},
-        ncyBreadcrumb: {
-          label: 'Bovedas'
-        }
-      })
-      .state('organizacion.app.estructura.caja.editar.editar.abrir', {
-        url: '/abrir',
-        templateUrl: 'modules/organizacion/views/caja/form-editar-caja-abrir.html',
-        controller: 'Organizacion.Caja.EditarCaja.AbrirController',
-        resolve: {}
-      })
-      .state('organizacion.app.estructura.caja.editar.editar.cerrar', {
-        url: '/cerrar',
-        templateUrl: 'modules/organizacion/views/caja/form-editar-caja-cerrar.html',
-        controller: 'Organizacion.Caja.EditarCaja.CerrarController',
-        resolve: {}
-      })
-
-      .state('organizacion.app.transaccionInterna.buscarTransaccionesBovedaCaja', {
-        url: '/buscarTransaccionesBovedaCaja',
-        templateUrl: 'modules/organizacion/views/transaccionInterna/form-buscar-transaccionBovedaCaja.html',
-        controller: 'Organizacion.BuscarTransaccionBovedaCajaController',
-        resolve: {}
-      })
-
-      .state('organizacion.app.transaccionInterna.buscarTransaccionesCajaCaja', {
-        url: '/buscarTransaccionesCajaCaja',
-        templateUrl: 'modules/organizacion/views/transaccionInterna/form-buscar-transaccionCajaCaja.html',
-        controller: 'Organizacion.BuscarTransaccionCajaCajaController',
-        resolve: {}
       });
 
 

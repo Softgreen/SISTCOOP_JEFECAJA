@@ -1,0 +1,33 @@
+<h1><strong>Transacciones boveda-caja</strong>
+
+  <div class="pull-right">
+    <a href="" ui-sref="^.crear" class="btn btn-primary">Nuevo</a>
+  </div>
+</h1>
+
+<div class="row" style="border-top: 1px solid #d0d0d0;">
+  <div class="col-sm-6">
+    <div class="page-header page-header-bleed-right">
+      <div class="actions pull-right">
+        <a href="#" data-ng-click="loadTransaccionRecibidas()"><span class="pficon pficon-refresh"></span> Actualizar</a>
+      </div>
+      <h1>Recibidos</h1>
+    </div>
+    <div ui-grid="gridOptions_recibido_noConfirmado" external-scopes="gridActions" ui-grid-selection class="grid"
+         style="min-height: 220px;"></div>
+    <div ui-grid="gridOptions_recibido_confirmado" external-scopes="gridActions" ui-grid-selection class="grid"
+         style="min-height: 220px;"></div>
+  </div>
+  <div class="col-sm-6 sidebar-pf sidebar-pf-right">
+    <div class="page-header page-header-bleed-right">
+      <div class="actions pull-right">
+        <a href="#" data-ng-click="loadTransaccionEnviadas()"><span class="pficon pficon-refresh"></span> Actualizar</a>
+      </div>
+      <h1>Enviados</h1>
+    </div>
+    <div ui-grid="gridOptions_enviado_noConfirmado" external-scopes="gridActions" ui-grid-selection class="grid"
+         style="min-height: 220px;"></div>
+    <div ui-grid="gridOptions_enviado_confirmado" external-scopes="gridActions" ui-grid-selection class="grid"
+         style="min-height: 220px;"></div>
+  </div>
+</div>

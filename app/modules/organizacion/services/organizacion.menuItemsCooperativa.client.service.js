@@ -84,8 +84,8 @@ angular.module('organizacion').service('$menuItemsOrganizacion', [
 
             estructura.addItem('Bovedas', 'organizacion.app.estructura.boveda');
             estructura.addItem('Cajas', 'organizacion.app.estructura.caja');
-
-            transaccionInterna.addItem('Boveda/Caja', 'organizacion.app.transaccionInterna.buscarTransaccionesBovedaCaja');
+           
+            transaccionInterna.addItem('Boveda/Caja', 'organizacion.app.transaccionInterna.bovedaCaja');
 
             return this;
         };
