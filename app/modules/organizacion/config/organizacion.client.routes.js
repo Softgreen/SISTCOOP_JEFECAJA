@@ -27,6 +27,8 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
       return deferred.promise;
     };
 
+    $urlRouterProvider.when('/organizacion/app', '/organizacion/app/estructura/bovedas');
+
     $urlRouterProvider.when('/organizacion/app/estructura/bovedas', '/organizacion/app/estructura/bovedas/buscar');
     $urlRouterProvider.when('/organizacion/app/estructura/cajas', '/organizacion/app/estructura/cajas/buscar');
 
