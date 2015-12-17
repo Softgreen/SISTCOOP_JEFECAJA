@@ -19,8 +19,8 @@ window.auth = {};
 window.auth.keycloakUrl = 'http://multivadelsur.ddns.net:8080/auth';
 window.auth.keycloakRealm = 'SISTEMA_FINANCIERO';
 window.auth.keycloakClientId = 'SISTCOOP_APP';
-//window.auth.rrhhUrl = 'http://multivadelsur.ddns.net:8080/SISTCOOP_REST/rest';
-window.auth.rrhhUrl = 'http://192.168.1.90:8080/SISTCOOP_REST/rest';
+window.auth.rrhhUrl = 'http://multivadelsur.ddns.net:8080/SISTCOOP_REST/rest';
+//window.auth.rrhhUrl = 'http://192.168.1.90:8080/SISTCOOP_REST/rest';
 
 window.auth.empresa = 'MULTIVALORES DEL SUR';
 window.auth.printer = 'EPSON TM-U220';
