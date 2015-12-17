@@ -8,7 +8,7 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
 // Setting HTML5 Location Mode
 /* jshint ignore:start */
 angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
-  function($locationProvider) {
+  function ($locationProvider) {
     $locationProvider.hashPrefix('!');
   }
 ]);
@@ -19,8 +19,8 @@ window.auth = {};
 window.auth.keycloakUrl = 'http://multivadelsur.ddns.net:8080/auth';
 window.auth.keycloakRealm = 'SISTEMA_FINANCIERO';
 window.auth.keycloakClientId = 'SISTCOOP_APP';
-window.auth.rrhhUrl = 'http://multivadelsur.ddns.net:8080/SISTCOOP_REST/rest';
-//window.auth.rrhhUrl = 'http://192.168.1.90:8080/SISTCOOP_REST/rest';
+//window.auth.rrhhUrl = 'http://multivadelsur.ddns.net:8080/SISTCOOP_REST/rest';
+window.auth.rrhhUrl = 'http://192.168.1.90:8080/SISTCOOP_REST/rest';
 
 window.auth.empresa = 'MULTIVALORES DEL SUR';
 window.auth.printer = 'EPSON TM-U220';
@@ -79,13 +79,13 @@ angular.element(document).ready(function () {
       angular.module('mean').constant('EMPRESA', window.auth.empresa);
       angular.module('mean').constant('PRINTER', window.auth.printer);
 
-      //if (angular.isUndefined(sistcoop.agencia) || angular.isUndefined(sistcoop.persona)) {
-       // alert('No tiene una agencia o trabajador asignada.');
-       // keycloak.logout();
-      //} else {
+      if (angular.isUndefined(sistcoop.agencia)) {
+        alert('No tiene una agencia.');
+        keycloak.logout();
+      } else {
         //Then init the app
         angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
-      //}
+      }
     }).error(function () {
       alert('No se pudo verificar el origen de sucursal y agencia para el usuario');
     });
@@ -287,7 +287,7 @@ angular.module('mean').config(['RestangularProvider', 'PRINTER',
     //RestangularProvider.setBaseUrl('http://multivadelsur.ddns.net:8080/SISTCOOP_REST/rest');
     RestangularProvider.setBaseUrl(window.auth.rrhhUrl);
 
-    if(isLoaded()){
+    if (isLoaded()) {
       findPrinter(PRINTER);
       return;
     }
