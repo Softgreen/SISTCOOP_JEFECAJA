@@ -248,6 +248,16 @@ angular.module('socio').config(['$stateProvider', '$urlRouterProvider',
                 }
             })
 
+            .state('socio.app.socio.cuentaPersonal.editar.estadoCuenta', {
+              url: '/estadoCuenta',
+              templateUrl: 'modules/socio/views/cuentaPersonal/form-editar-estadoCuenta.html',
+              controller: 'Socio.CuentaPersonal.EditarCuentaPersonal.EstadoCuentaController',
+              ncyBreadcrumb: {
+                label: 'Estado cuenta',
+                parent: 'socio.app.socio.cuentaPersonal.editar.resumen'
+              }
+            })
+
             //configuracion
             .state('socio.app.configuracion.configuracion', {
                 url: '/configuracion',

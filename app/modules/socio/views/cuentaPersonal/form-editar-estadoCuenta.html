@@ -1,0 +1,75 @@
+<fieldset class="border-top">
+  <legend>
+    <span class="text ng-scope">Cuenta personal <i class="fa fa-question-circle text-muted ng-scope"
+                                                        tooltip="Cuenta personal."
+                                                        tooltip-placement="right"></i></span>
+  </legend>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Cuenta&nbsp;<span data-ng-bind="view.cuentaPersonal.tipoCuenta"></span>:</label>
+    <div class="col-sm-2">
+      <span data-ng-bind="view.cuentaPersonal.numeroCuenta"></span>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class="border-top">
+  <legend>
+    <span class="text ng-scope">Saldos y movimientos <i class="fa fa-question-circle text-muted ng-scope"
+                                                       tooltip="Saldos y movimientos de la cuenta."
+                                                       tooltip-placement="right"></i></span>
+    <div class="btn-group pull-right">
+      <button class="btn btn-default" data-ng-click="imprimirPdf()"><i class="pficon pficon-print"></i>&nbsp;Imprimir</button>
+      <button class="btn btn-default" data-ng-click="enviarEmail()"><i class="fa fa-envelope"></i>&nbsp;Enviar</button>
+    </div>
+  </legend>
+  <div class="form-group" data-ng-class="{ 'has-error' : (form.tipoDocumento.$invalid || form.numeroDocumento.$invalid ) && (form.numeroDocumento.$dirty )}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Periodo:</label>
+    <div class="col-sm-2" data-ng-controller="Persona.Util.DateController">
+      <div class="input-group" data-ng-class="{ 'has-error' : form.desde.$invalid && (form.$submitted)}">
+        <input type="text" name="desde" class="form-control" data-ng-model="view.desde" datepicker-popup="dd/MM/yyyy" is-open="opened" datepicker-options="dateOptions" data-ng-required="true" close-text="Close" placeholder="Desde" required>
+        <span class="input-group-btn"><button class="btn btn-default" type="button" data-ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button></span>
+      </div>
+    </div>
+    <div class="col-sm-2" data-ng-controller="Persona.Util.DateController">
+      <div class="input-group" data-ng-class="{ 'has-error' : form.hasta.$invalid && (form.$submitted)}">
+        <input type="text" name="hasta" class="form-control" data-ng-model="view.hasta" datepicker-popup="dd/MM/yyyy" is-open="opened" datepicker-options="dateOptions" data-ng-required="true" close-text="Close" placeholder="Hasta" required>
+        <span class="input-group-btn"><button class="btn btn-default" type="button" data-ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button></span>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="form-group">
+        <span class="input-group-btn"><button class="btn btn-default" type="button" data-ng-click="loadEstadoCuenta()">Buscar&nbsp;<i class="fa fa-search text"></i></button></span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Ultimos movimientos:</label>
+    <div class="col-sm-8">
+      <table class="table table-striped table-bordered table-condensed">
+        <thead>
+        <tr class="t-head">
+          <th align="left">Fecha</th>
+          <th align="left">Descripción</th>
+          <th align="right">Monto</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="item in view.load.estadoCuenta">
+          <td><span data-ng-bind="item.fecha | date: 'dd/MM/yyyy'"></span></td>
+          <td align="left"><span data-ng-bind="item.tipoTransaccion"></span></td>
+          <td align="right" ng-class="{'required': item.monto < 0}"><span data-ng-bind="item.monto | currency: ''"></span></td>
+        </tr>
+
+        <tr class="space-3">
+          <td>&nbsp;</td>
+          <td><strong>Saldo disponible</strong></td>
+          <td align="right">
+            <strong data-ng-bind="view.cuentaPersonal.moneda"></strong>
+            <strong data-ng-bind="view.cuentaPersonal.saldo | currency: ''"></strong>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</fieldset>

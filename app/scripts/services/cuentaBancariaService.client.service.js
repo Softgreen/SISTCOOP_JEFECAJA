@@ -193,6 +193,9 @@ angular.module('mean').factory('CuentaBancariaService', ['Restangular',
 
             getUrlContrato: function (id) {
                 return Restangular.one(baseUrl, id).all('cartilla').getRestangularUrl();
+            },
+            getUrlEstadoCuentaPdf: function (id, desde, hasta) {
+              return Restangular.one(baseUrl, id).all('/estadoCuenta/pdf?desde='+desde+'&hasta='+hasta).getRestangularUrl();
             }
         };
 
