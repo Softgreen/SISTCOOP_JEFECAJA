@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cooperativa').factory('TasaInteresService', ['Restangular',
+angular.module('mean').factory('TasaInteresService', ['Restangular',
     function (Restangular) {
         return {
             getInteresGenerado: function (tasa, periodo, monto) {

@@ -1,7 +1,7 @@
 'use strict';
 /*global $:false */
 
-angular.module('socio').factory('SessionService', ['Restangular',
+angular.module('mean').factory('SessionService', ['Restangular',
     function (Restangular) {
 
         var _cajaService = Restangular.all('session');

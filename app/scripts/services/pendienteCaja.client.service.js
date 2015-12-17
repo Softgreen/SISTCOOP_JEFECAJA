@@ -1,5 +1,5 @@
 'use strict';
-angular.module('cooperativa').factory('PendienteCajaService', ['Restangular',
+angular.module('mean').factory('PendienteCajaService', ['Restangular',
     function (Restangular) {
 
         return {

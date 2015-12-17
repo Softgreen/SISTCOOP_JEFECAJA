@@ -2,7 +2,7 @@
 
 /*global $:false */
 /* jshint ignore:start */
-angular.module('cooperativa').factory('UsuarioService', ['Restangular',
+angular.module('mean').factory('UsuarioService', ['Restangular',
     function (Restangular) {
 
         var _usuarioService = Restangular.all('usuario');

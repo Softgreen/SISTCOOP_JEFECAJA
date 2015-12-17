@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('socio').factory('CuentaBancariaService', ['Restangular',
+angular.module('mean').factory('CuentaBancariaService', ['Restangular',
     function (Restangular) {
 
         var _historialCajaService = Restangular.all('cuentasBancarias');

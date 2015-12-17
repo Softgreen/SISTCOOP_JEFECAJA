@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cooperativa').factory('BovedaService', ['Restangular',
+angular.module('mean').factory('BovedaService', ['Restangular',
   function (Restangular) {
 
     var baseUrl = 'bovedas';

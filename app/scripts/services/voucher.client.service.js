@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint ignore:start */
-angular.module('cooperativa').factory('VoucherService', function (EMPRESA, $filter) {
+angular.module('mean').factory('VoucherService', function (EMPRESA, $filter) {
 
     var fnResetPrinter = function () {
         qz.append("\x1B\x40");
@@ -70,7 +70,7 @@ angular.module('cooperativa').factory('VoucherService', function (EMPRESA, $filt
         }
 
         function Recibido(obj) {
-            if (obj.monedaRecibida.simbolo === '€') {
+            if (obj.monedaRecibida.simbolo === 'ï¿½') {
                 fnTabTexto('RECIBIDO: ' + $filter('currency')(obj.montoRecibido, chr(238)));
             } else {
                 fnTabTexto('RECIBIDO: ' + $filter('currency')(obj.montoRecibido, obj.monedaRecibida.simbolo));
@@ -78,7 +78,7 @@ angular.module('cooperativa').factory('VoucherService', function (EMPRESA, $filt
         }
 
         function Entregado(obj) {
-            if (item.monedaEntregada.simbolo === '€') {
+            if (item.monedaEntregada.simbolo === 'ï¿½') {
                 fnTabTexto('ENTREGADO: ' + $filter('currency')(obj.montoEntregado, chr(238)));
             } else {
                 fnTabTexto('ENTREGADO: ' + $filter('currency')(obj.montoEntregado, obj.monedaEntregada.simbolo));
@@ -231,7 +231,7 @@ angular.module('cooperativa').factory('VoucherService', function (EMPRESA, $filt
         fnTabTexto('FECHA: ' + $filter('date')(item.fecha, 'dd/MM/yyyy'), 'HORA: ' + $filter('date')(item.hora, 'HH:mm:ss'));
 
         fnTabTexto('MONEDA: ' + item.moneda.denominacion);
-        if (item.moneda.simbolo.charCodeAt(0) === '€') {
+        if (item.moneda.simbolo.charCodeAt(0) === 'ï¿½') {
             fnTabTexto('MONTO: ' + $filter('currency')(item.monto, chr(238)));
         } else {
             fnTabTexto('MONTO: ' + $filter('currency')(item.monto, item.moneda.simbolo));
@@ -271,7 +271,7 @@ angular.module('cooperativa').factory('VoucherService', function (EMPRESA, $filt
         fnTabTexto('FECHA: ' + $filter('date')(item.fecha, 'dd/MM/yyyy'), 'HORA: ' + $filter('date')(item.hora, 'HH:mm:ss'));
 
         fnTabTexto('MONEDA: ' + item.moneda.denominacion);
-        if (item.moneda.simbolo.charCodeAt(0) === '€') {
+        if (item.moneda.simbolo.charCodeAt(0) === 'ï¿½') {
             fnTabTexto('MONTO: ' + $filter('currency')(item.monto, chr(238)));
         } else {
             fnTabTexto('MONTO: ' + $filter('currency')(item.monto, item.moneda.simbolo));

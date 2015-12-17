@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rrhh').factory('AgenciaService', ['Restangular',
+angular.module('mean').factory('AgenciaService', ['Restangular',
     function (Restangular) {
 
         var baseUrl = 'agencias';

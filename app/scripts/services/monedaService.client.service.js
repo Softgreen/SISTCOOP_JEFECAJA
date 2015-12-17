@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('socio').factory('MonedaService', ['Restangular',
+angular.module('mean').factory('MonedaService', ['Restangular',
     function (Restangular) {
         var _monedaService = Restangular.all('monedas');
         var baseUrl = 'monedas';

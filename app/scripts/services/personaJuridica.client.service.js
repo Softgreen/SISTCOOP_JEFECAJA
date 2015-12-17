@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('persona').factory('PersonaJuridicaService', ['Restangular',
+angular.module('mean').factory('PersonaJuridicaService', ['Restangular',
     function (Restangular) {
 
         var _personaJuridicaService = Restangular.all('personas/juridicas');

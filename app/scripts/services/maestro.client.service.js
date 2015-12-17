@@ -1,5 +1,5 @@
 'use strict';
-angular.module('persona').factory('MaestroService', ['Restangular',
+angular.module('mean').factory('MaestroService', ['Restangular',
     function (Restangular) {
 
         var tipoPersonas = [{'denominacion': 'NATURAL'}, {'denominacion': 'JURIDICA'}];

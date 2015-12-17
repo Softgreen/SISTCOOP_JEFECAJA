@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('cooperativa').factory('CajaService', ['Restangular',
+angular.module('mean').factory('CajaService', ['Restangular',
   function (Restangular) {
 
     var _cajaService = Restangular.all('cajas');

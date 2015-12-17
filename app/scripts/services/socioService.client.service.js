@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('socio').factory('SocioService', ['Restangular',
+angular.module('mean').factory('SocioService', ['Restangular',
     function (Restangular) {
 
         var _socioService = Restangular.all('socios');
