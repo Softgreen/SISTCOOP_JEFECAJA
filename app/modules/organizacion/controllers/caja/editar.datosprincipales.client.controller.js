@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Caja.Editar.DatosPrincipalesController',
+angular.module('organizacion').controller('Cooperativa.Caja.Editar.DatosPrincipalesController',
     function ($scope, caja, toastr) {
 
         $scope.working = false;

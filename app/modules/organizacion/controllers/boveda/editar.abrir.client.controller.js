@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Organizacion.Boveda.Editar.AbrirController',
+angular.module('organizacion').controller('Organizacion.Boveda.Editar.AbrirController',
 	function ($scope, $state, boveda, toastr, BovedaService) {
 
     $scope.working = false;
