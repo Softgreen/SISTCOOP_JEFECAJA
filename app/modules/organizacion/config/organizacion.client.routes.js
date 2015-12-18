@@ -39,6 +39,7 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
     $urlRouterProvider.when('/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/editar/:bovedaCaja/historiales/editar/:historial', '/organizacion/app/estructura/cajas/editar/:caja/bovedaCajas/editar/:bovedaCaja/historiales/editar/:historial/resumen');
 
     $urlRouterProvider.when('/organizacion/app/transaccionInterna/transaccionesBovedaCaja', '/organizacion/app/transaccionInterna/transaccionesBovedaCaja/buscar');
+    $urlRouterProvider.when('/organizacion/app/transaccionInterna/transaccionesEntidadBoveda', '/organizacion/app/transaccionInterna/transaccionesEntidadBoveda/buscar');
 
     $stateProvider
       .state('organizacion', {
@@ -261,6 +262,33 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
         ncyBreadcrumb: {
           label: 'Crear transaccion boveda-caja',
           parent: 'organizacion.app.transaccionInterna.bovedaCaja.buscar'
+        }
+      })
+
+      .state('organizacion.app.transaccionInterna.entidadBoveda', {
+        url: '/transaccionesEntidadBoveda',
+        template: '<div ui-view></div>',
+        ncyBreadcrumb: {
+          skip: true // Never display this state in breadcrumb.
+        }
+      })
+      .state('organizacion.app.transaccionInterna.entidadBoveda.buscar', {
+        url: '/buscar',
+        templateUrl: 'modules/organizacion/views/transaccionInterna/entidadBoveda/form-buscar-transaccionEntidadBoveda.html',
+        controller: 'Organizacion.TransaccionInterna.EntidadBoveda.BuscarController',
+        resolve: {},
+        ncyBreadcrumb: {
+          label: 'Home'
+        }
+      })
+      .state('organizacion.app.transaccionInterna.entidadBoveda.crear', {
+        url: '/crear',
+        templateUrl: 'modules/organizacion/views/transaccionInterna/entidadBoveda/form-crear-transaccionEntidadBoveda.html',
+        controller: 'Organizacion.TransaccionInterna.EntidadBoveda.CrearController',
+        resolve: {},
+        ncyBreadcrumb: {
+          label: 'Crear transaccion entidad-boveda',
+          parent: 'organizacion.app.transaccionInterna.entidadBoveda.buscar'
         }
       });
 

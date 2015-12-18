@@ -1,0 +1,156 @@
+<div ncy-breadcrumb></div>
+
+<h1><strong>Crear transacciones boveda-caja</strong></h1>
+
+<form name="form" class="form-horizontal" novalidate>
+  <div class="form-group" ng-class="{ 'has-error' : form.entidad.$invalid && form.$submitted}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Entidad:</label>
+    <div class="col-sm-3">
+      <ui-select name="entidad" ng-model="combo.selected.entidad" pf-focused="true" autofocus required>
+        <ui-select-match placeholder="Boveda">{{$select.selected.denominacion}}</ui-select-match>
+        <ui-select-choices repeat="item in combo.entidad | filter: $select.search">
+          <div ng-bind-html="item.denominacion | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+      <div ng-messages="form.entidad.$error" ng-if="form.$submitted">
+        <div class="has-error" ng-message="required">Ingrese entidad.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{ 'has-error' : form.boveda.$invalid && form.$submitted}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Boveda:</label>
+    <div class="col-sm-3">
+      <ui-select name="boveda" ng-model="combo.selected.boveda" required>
+        <ui-select-match placeholder="Boveda">{{$select.selected.denominacion}}</ui-select-match>
+        <ui-select-choices repeat="item in combo.boveda | filter: $select.search">
+          <div ng-bind-html="item.denominacion | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+      <div ng-messages="form.boveda.$error" ng-if="form.$submitted">
+        <div class="has-error" ng-message="required">Ingrese boveda.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{ 'has-error' : form.tipoTransaccion.$invalid && form.$submitted}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Tipo transaccion:</label>
+    <div class="col-sm-3">
+      <ui-select name="tipoTransaccion" ng-model="combo.selected.tipoTransaccion" required>
+        <ui-select-match placeholder="Boveda">{{$select.selected.denominacion}}</ui-select-match>
+        <ui-select-choices repeat="item in combo.tipoTransaccion | filter: $select.search">
+          <div ng-bind-html="item.denominacion | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+      <div ng-messages="form.tipoTransaccion.$error" ng-if="form.$submitted">
+        <div class="has-error" ng-message="required">Ingrese tipo transaccion.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" data-ng-class="{ 'has-error' : form.observacion.$invalid && form.observacion.$dirty }">
+    <label class="col-sm-2 control-label">Observacion:</label>
+    <div class="col-sm-3">
+      <textarea name="observacion" type="text" data-ng-model="view.observacion" data-ng-maxlength="400" class="form-control"></textarea>
+      <div data-ng-messages="form.observacion.$error" data-ng-if="form.observacion.$dirty">
+        <div class="has-error" data-ng-message="maxlength">Abreviatura muy extensa, maximo 400 caracteres.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-class="{ 'has-error' : form.tipoCambio.$invalid && form.$submitted}">
+    <label class="col-sm-2 control-label"><span class="required">*</span> Monto:</label>
+    <div class="col-sm-5">
+      <label class="control-label">Denominaciones a transferir <i class="fa fa-question-circle text-muted" tooltip="Dinero a transferir." tooltip-placement="right"></i></label>
+      <table class="table table-bordered table-striped table-condensed table-hover">
+        <thead>
+        <tr>
+          <th width="5%" class="text-right">#</th>
+          <th width="70px" class="text-right">Valor</th>
+          <th width="150px" class="text-right">Cantidad</th>
+          <th class="text-right">Sub total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in view.load.detalle | orderBy: 'valor'">
+          <td class="text-right" style="height: 33px;"><span ng-bind="$index+1"></span></td>
+          <td class="text-right" style="height: 33px;">
+            <span ng-bind="::item.valor | currency: ''"></span>
+          </td>
+          <td class="text-right">
+            <ng-form name="form">
+              <div class="form-group" ng-class="{ 'has-error' : form.cantidad.$invalid }" style="margin: 0;">
+                <input type="text" name="cantidad" ng-model="item.cantidad"
+                       ui-number-mask="0" min="0" max="999999999"
+                       ng-minlength="1" ng-maxlength="11" class="form-control"
+                       placeholder="Cantidad" required
+                       style="text-align: right;"/>
+              </div>
+            </ng-form>
+          </td>
+          <td class="text-right">
+            <span ng-bind="::combo.selected.boveda.moneda.simbolo"></span>
+            &nbsp;
+            <span ng-bind="item.subtotal() | currency: ''"></span>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <th rowspan="1" colspan="3" class="text-right">TOTAL:</th>
+          <th rowspan="1" colspan="1" class="text-right">
+            <span ng-bind="::combo.selected.boveda.moneda.simbolo"></span>
+            &nbsp;
+            <span ng-bind="getTotal() | currency : ''"></span>
+          </th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="col-sm-5">
+      <label class="control-label">Denominaciones disponibles <i class="fa fa-question-circle text-muted" tooltip="Dinero disponible en boveda." tooltip-placement="right"></i></label>
+      <table class="table table-bordered table-striped table-condensed table-hover">
+        <thead>
+        <tr>
+          <th width="5%" class="text-right">#</th>
+          <th width="70px" class="text-right">Valor</th>
+          <th width="150px" class="text-right">Cantidad</th>
+          <th class="text-right">Sub total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in view.load.detalleDisponible | orderBy: 'valor'">
+          <td class="text-right" style="height: 33px;"><span ng-bind="$index+1"></span></td>
+          <td class="text-right" style="height: 33px;">
+            <span ng-bind="::item.valor | currency: ''"></span>
+          </td>
+          <td class="text-right">
+            <span ng-bind="::item.cantidad | number: 0"></span>
+          </td>
+          <td class="text-right">
+            <span ng-bind="::combo.selected.boveda.moneda.simbolo"></span>
+            &nbsp;
+            <span ng-bind="item.subtotal() | currency: ''"></span>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <th rowspan="1" colspan="3" class="text-right">TOTAL:</th>
+          <th rowspan="1" colspan="1" class="text-right">
+            <span ng-bind="combo.selected.boveda.moneda.simbolo"></span>
+            &nbsp;
+            <span ng-bind="getTotalDisponible() | currency : ''"></span>
+          </th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button sg-save ng-disabled="working">
+        <span ng-show="working">Guardando...</span>
+        <span ng-hide="working">Guardar</span>
+      </button>
+      <button sg-cancel ng-disabled="working" ui-sref="^.buscar">Cancelar</button>
+    </div>
+  </div>
+</form>
