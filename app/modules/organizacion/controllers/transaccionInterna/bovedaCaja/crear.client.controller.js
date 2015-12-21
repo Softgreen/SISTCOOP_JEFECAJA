@@ -84,6 +84,7 @@ angular.module('organizacion').controller('Organizacion.TransaccionInterna.Boved
               $state.go('^.buscar');
             },
             function error(err) {
+              $scope.working = false;
               toastr.error(err.data.message);
             }
           );

@@ -51,6 +51,7 @@ angular.module('organizacion').controller('Organizacion.Boveda.CrearController',
           $state.go('^.buscar');
         },
         function error(err) {
+          $scope.working = false;
           toastr.error(err.data.errorMessage);
         }
       );

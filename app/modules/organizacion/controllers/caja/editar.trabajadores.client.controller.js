@@ -67,6 +67,7 @@ angular.module('organizacion').controller('Organizacion.Caja.Editar.Trabajadores
           $scope.working = false;
         },
         function error(err) {
+          $scope.working = false;
           toastr.error(err.data.message);
         }
       );

@@ -33,6 +33,7 @@ angular.module('organizacion').controller('Cooperativa.Caja.Editar.DatosPrincipa
                     $scope.working = false;
                 },
                 function error(err) {
+                    $scope.working = false;
                     toastr.error(err.data.message);
                 }
             );

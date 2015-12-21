@@ -65,6 +65,7 @@ angular.module('organizacion').controller('Organizacion.Boveda.Editar.CerrarCont
           $state.go('^.resumen');
         },
         function error(err){
+          $scope.working = false;
           toastr.error(err.data.message);
         }
       );

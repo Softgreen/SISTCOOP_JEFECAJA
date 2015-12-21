@@ -27,6 +27,7 @@ angular.module('organizacion').controller('Organizacion.Boveda.Editar.DatosPrinc
 					toastr.success('Boveda actualizada');
 				},
 				function error(err) {
+          $scope.working = false;
           toastr.error(err.data.message);
 				}
 			);

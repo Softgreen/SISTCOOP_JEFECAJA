@@ -53,6 +53,7 @@ angular.module('organizacion').controller('Organizacion.Caja.Editar.AbrirControl
           $scope.working = false;
           $state.go('^.resumen');
         }, function error(err){
+          $scope.working = false;
           toastr.error(err.data.message);
         }
       );

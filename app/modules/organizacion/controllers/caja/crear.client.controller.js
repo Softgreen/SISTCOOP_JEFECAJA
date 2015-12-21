@@ -66,6 +66,7 @@ angular.module('organizacion').controller('Organizacion.Caja.CrearController',
         toastr.success('Caja creada');
         $state.go('^.buscar');
       }, function error(err) {
+        $scope.working = false;
         toastr.error(err.data.errorMessage);
       });
     };

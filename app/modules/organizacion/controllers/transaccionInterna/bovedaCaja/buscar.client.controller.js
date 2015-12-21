@@ -148,7 +148,7 @@ angular.module('organizacion').controller('Organizacion.TransaccionInterna.Boved
         });
       },
       cancelar: function (row) {
-        SGDialog.confirm('Cancelar transaccion', 'Estas seguro de cancelar la transaccion', function () {
+        SGDialog.confirm('Guardar', 'Estas seguro de cancelar la transaccion', function () {
           SessionService.cancelarTransaccionBovedaCaja(row.id).then(
             function(data){
               toastr.success('Transaccion cancelada');

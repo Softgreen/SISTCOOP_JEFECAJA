@@ -80,6 +80,7 @@ angular.module('socio').controller('Socio.Socio.CrearSocioController',
                     $state.go('^.editar', {socio: response.id});
                 },
                 function error(err) {
+                    $scope.working = false;
                     toastr.error(err.data.message);
                 }
             );
