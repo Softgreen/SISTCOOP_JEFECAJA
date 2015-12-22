@@ -35,7 +35,7 @@
 	<div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted}">
 		<label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
 		<div class="col-sm-3">
-			<input type="text" name="denominacion" ng-model="view.boveda.denominacion" ng-maxlength="100" class="form-control" required/>
+			<input type="text" name="denominacion" ng-model="view.boveda.denominacion" ng-maxlength="100" class="form-control" style="text-transform: uppercase" required/>
 			<div ng-messages="form.denominacion.$error" ng-if="form.$submitted">
 				<div class="has-error" ng-message="required">Ingrese denominacion.</div>
 				<div class="has-error" ng-message="maxlength">Maximo 100 caracteres.</div>
