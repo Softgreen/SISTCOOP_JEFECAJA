@@ -79,12 +79,16 @@ angular.element(document).ready(function () {
       angular.module('mean').constant('EMPRESA', window.auth.empresa);
       angular.module('mean').constant('PRINTER', window.auth.printer);
 
-      if (angular.isUndefined(sistcoop.agencia)) {
-        alert('No tiene una agencia.');
-        keycloak.logout();
+      if(keycloak.realmAccess.roles.indexOf('JEFE_CAJA') !== -1) {
+        if (angular.isUndefined(sistcoop.agencia)) {
+          alert('No tiene una agencia.');
+          keycloak.logout();
+        } else {
+          //Then init the app
+          angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
+        }
       } else {
-        //Then init the app
-        angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
+        alert('Usuario no tiene el Rol JEFE_CAJA');
       }
     }).error(function () {
       alert('No se pudo verificar el origen de sucursal y agencia para el usuario');
