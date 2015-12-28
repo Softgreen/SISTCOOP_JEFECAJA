@@ -5,7 +5,7 @@
 <form name="form" class="form-horizontal" novalidate>
 
   <fieldset class="border-top">
-    <legend><span class="text ng-scope">Datos principales <i class="fa fa-question-circle text-muted ng-scope" tooltip="Datos principales." tooltip-placement="right"></i></span>  <kc-tooltip class="hidden"></kc-tooltip></legend>
+    <legend><span class="text ng-scope">Datos Principales <i class="fa fa-question-circle text-muted ng-scope" tooltip="Datos principales." tooltip-placement="right"></i></span>  <kc-tooltip class="hidden"></kc-tooltip></legend>
     <div class="form-group">
       <label class="col-sm-2 control-label"><span class="required">*</span> Agencia:</label>
       <div class="col-sm-6">
@@ -15,7 +15,7 @@
     <div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted}">
       <label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
       <div class="col-sm-3">
-        <input type="text" name="denominacion" ng-model="view.caja.denominacion" ng-maxlength="60" class="form-control" pf-focused="true" autofocus required/>
+        <input type="text" name="denominacion" ng-model="view.caja.denominacion" ng-maxlength="60" class="form-control" pf-focused="true" style="text-transform: uppercase" autofocus required/>
         <div ng-messages="form.denominacion.$error" ng-if="form.$submitted">
           <div class="has-error" ng-message="required">Ingrese denominacion.</div>
           <div class="has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
@@ -25,7 +25,7 @@
     <div class="form-group" ng-class="{ 'has-error' : form.abreviatura.$invalid && form.$submitted}">
       <label class="col-sm-2 control-label"><span class="required">*</span> Abreviatura:</label>
       <div class="col-sm-3">
-        <input type="text" name="abreviatura" ng-model="view.caja.abreviatura" ng-maxlength="10" class="form-control" required/>
+        <input type="text" name="abreviatura" ng-model="view.caja.abreviatura" ng-maxlength="10" class="form-control" style="text-transform: uppercase" required/>
         <div ng-messages="form.abreviatura.$error" ng-if="form.$submitted">
           <div class="has-error" ng-message="required">Ingrese denominacion.</div>
           <div class="has-error" ng-message="maxlength">Maximo 10 caracteres.</div>
