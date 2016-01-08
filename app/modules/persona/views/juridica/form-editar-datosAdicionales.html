@@ -5,7 +5,7 @@
 	<div class="form-group" data-ng-class="{ 'has-error' : form.direccion.$invalid && form.$submitted }">
 		<label class="col-sm-2 control-label">Direccion:</label>
 		<div class="col-sm-3">
-			<input name="direccion" type="text" data-ng-model="view.persona.direccion" data-ng-maxlength="70" class="form-control" capitalize />
+			<input name="direccion" type="text" data-ng-model="view.persona.direccion" data-ng-maxlength="70" class="form-control" ng-trim="false" text-transform-uppercase capitalize />
 			<div data-ng-messages="form.direccion.$error" data-ng-if="form.direccion.$touched || form.$submitted">
 				<div class="has-error" data-ng-message="maxlength">Maximo 70 Caracteres.</div>
 			</div>
@@ -14,7 +14,7 @@
 	<div class="form-group" data-ng-class="{ 'has-error' : form.referencia.$invalid && form.$submitted }">
 		<label class="col-sm-2 control-label">Referencia:</label>
 		<div class="col-sm-3">
-			<input name="referencia" type="text" data-ng-model="view.persona.referencia" data-ng-maxlength="70" class="form-control" capitalize />
+			<input name="referencia" type="text" data-ng-model="view.persona.referencia" data-ng-maxlength="70" class="form-control" ng-trim="false" text-transform-uppercase capitalize />
 			<div data-ng-messages="form.referencia.$error" data-ng-if="form.referencia.$touched || form.$submitted">
 				<div class="has-error" data-ng-message="maxlength">Maximo 70 Caracteres.</div>
 			</div>

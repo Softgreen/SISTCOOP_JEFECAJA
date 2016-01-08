@@ -3,7 +3,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <fieldset class="border-top">
-                    <legend><span class="text">Datos principales</span></legend>
+                    <legend><span class="text">Datos Principales</span></legend>
                     <dl class="dl-horizontal left">
                         <dt>Documento:</dt>
                         <dd data-ng-bind="view.persona.tipoDocumento.abreviatura"></dd>
@@ -11,23 +11,23 @@
                         <dd data-ng-bind="view.persona.numeroDocumento"></dd>
                     </dl>
                     <dl class="dl-horizontal left">
-                        <dt>Razon social:</dt>
+                        <dt>Razon Social:</dt>
                         <dd data-ng-bind="view.persona.razonSocial"></dd>
-                        <dt>Nombre comercial:</dt>
+                        <dt>Nombre Comercial:</dt>
                         <dd data-ng-if="view.persona.nombreComercial" data-ng-bind="view.persona.nombreComercial"></dd>
                         <dd data-ng-if="!view.persona.nombreComercial"><em>No registrado</em></dd>
-                        <dt>Actividad principal:</dt>
+                        <dt>Actividad Principal:</dt>
                         <dd data-ng-if="view.persona.actividadPrincipal" data-ng-bind="view.persona.actividadPrincipal"></dd>
                         <dd data-ng-if="!view.persona.actividadPrincipal"><em>No registrado</em></dd>
                     </dl>
                     <dl class="dl-horizontal left">
-                        <dt>Fecha constitucion:</dt>
+                        <dt>Fecha Constitucion:</dt>
                         <dd data-ng-if="view.persona.fechaConstitucion" data-ng-bind="view.persona.fechaConstitucion | date : 'dd/MM/yyyy'"></dd>
                         <dd data-ng-if="!view.persona.fechaConstitucion"><em>No registrado</em></dd>
-                        <dt>Tipo empresa:</dt>
+                        <dt>Tipo Empresa:</dt>
                         <dd data-ng-if="view.persona.tipoEmpresa" data-ng-bind="view.persona.tipoEmpresa"></dd>
                         <dd data-ng-if="!view.persona.tipoEmpresa"><em>No registrado</em></dd>
-                        <dt>Fin de lucro:</dt>
+                        <dt>Fin de Lucro:</dt>
                         <dd data-ng-if="view.persona.finLucro" data-ng-bind="view.persona.finLucro | si_no | uppercase"></dd>
                         <dd data-ng-if="!view.persona.finLucro"><em>No registrado</em></dd>
                     </dl>
@@ -39,7 +39,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <fieldset class="border-top">
-                    <legend><span class="text">Datos adicionales</span></legend>
+                    <legend><span class="text">Datos Adicionales</span></legend>
                     <h3 style="margin-top: 0;">Direccion</h3>
                     <dl class="dl-horizontal left">
                         <dt>Direccion:</dt>
@@ -77,7 +77,7 @@
                 <fieldset class="border-top">
                     <legend><span class="text">Representante legal</span></legend>
                     <dl class="dl-horizontal left">
-                        <dt>Codigo pais:</dt>
+                        <dt>Codigo Pais:</dt>
                         <dd data-ng-bind="view.persona.representanteLegal.codigoPais"></dd>
                         <dt>Documento:</dt>
                         <dd data-ng-bind="view.persona.representanteLegal.tipoDocumento.abreviatura"></dd>
@@ -85,15 +85,15 @@
                         <dd data-ng-bind="view.persona.representanteLegal.numeroDocumento"></dd>
                     </dl>
                     <dl class="dl-horizontal left">
-                        <dt>Apellido paterno:</dt>
+                        <dt>Apellido Paterno:</dt>
                         <dd data-ng-bind="view.persona.representanteLegal.apellidoPaterno"></dd>
-                        <dt>Apellido materno:</dt>
+                        <dt>Apellido Materno:</dt>
                         <dd data-ng-bind="view.persona.representanteLegal.apellidoMaterno"></dd>
                         <dt>Nombres:</dt>
                         <dd data-ng-bind="view.persona.representanteLegal.nombres"></dd>
                     </dl>
                     <dl class="dl-horizontal left">
-                        <dt>Fecha nacimiento:</dt>
+                        <dt>Fecha Nacimiento:</dt>
                         <dd data-ng-if="view.persona.representanteLegal.fechaNacimiento"
                             data-ng-bind="view.persona.representanteLegal.fechaNacimiento | date : 'dd/MM/yyyy'"></dd>
                         <dd data-ng-if="!view.persona.representanteLegal.fechaNacimiento"><em>No registrado</em></dd>

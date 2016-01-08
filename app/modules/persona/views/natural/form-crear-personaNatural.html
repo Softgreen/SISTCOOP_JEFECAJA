@@ -1,6 +1,6 @@
 <div ncy-breadcrumb></div>
 
-<h1><strong>Crear persona natural</strong></h1>
+<h1><strong>Crear Persona Natural</strong></h1>
 
 <form name="form" class="form-horizontal" novalidate>
 
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div class="form-group" data-ng-class="{ 'has-error' : (form.tipoDocumento.$invalid || form.numeroDocumento.$invalid ) && (form.tipoDocumento.$dirty || form.numeroDocumento.$dirty || form.$submitted) }">
-		<label class="col-sm-2 control-label">Documento identidad:</label>
+		<label class="col-sm-2 control-label">Documento Identidad:</label>
 		<div class="col-sm-2">
 			<ui-select name="tipoDocumento" data-ng-model="combo.selected.tipoDocumento" required>
 				<ui-select-match placeholder="Documento">{{$select.selected.abreviatura}}</ui-select-match>
@@ -48,9 +48,9 @@
 		</div>
 	</div>
 	<div class="form-group" data-ng-class="{ 'has-error' : form.apellidoPaterno.$invalid && form.$submitted }">
-		<label class="col-sm-2 control-label">Apellido paterno:</label>
+		<label class="col-sm-2 control-label">Apellido Paterno:</label>
 		<div class="col-sm-3">
-			<input name="apellidoPaterno" type="text" data-ng-model="view.persona.apellidoPaterno" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" capitalize required/>
+			<input name="apellidoPaterno" type="text" data-ng-model="view.persona.apellidoPaterno" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" ng-trim="false" text-transform-uppercase capitalize required/>
 			<div data-ng-messages="form.apellidoPaterno.$error" data-ng-if="form.$submitted">
 				<div class="has-error" data-ng-message="required">Ingrese apellido paterno.</div>
 				<div class="has-error" data-ng-message="minlength">Ingrese apellido paterno.</div>
@@ -59,9 +59,9 @@
 		</div>
 	</div>
 	<div class="form-group" data-ng-class="{ 'has-error' : form.apellidoMaterno.$invalid && form.$submitted }">
-		<label class="col-sm-2 control-label">Apellido materno:</label>
+		<label class="col-sm-2 control-label">Apellido Materno:</label>
 		<div class="col-sm-3">
-			<input name="apellidoMaterno" type="text" data-ng-model="view.persona.apellidoMaterno" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" capitalize required/>
+			<input name="apellidoMaterno" type="text" data-ng-model="view.persona.apellidoMaterno" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" ng-trim="false" text-transform-uppercase capitalize required/>
 			<div data-ng-messages="form.apellidoMaterno.$error" data-ng-if="form.$submitted">
 				<div class="has-error" data-ng-message="required">Ingrese apellido materno.</div>
 				<div class="has-error" data-ng-message="minlength">Ingrese apellido materno.</div>
@@ -72,7 +72,7 @@
 	<div class="form-group" data-ng-class="{ 'has-error' : form.nombres.$invalid && form.$submitted }">
 		<label class="col-sm-2 control-label">Nombres:</label>
 		<div class="col-sm-3">
-			<input name="nombres" type="text" data-ng-model="view.persona.nombres" data-ng-minlength="1" data-ng-maxlength="70" class="form-control" capitalize required  />
+			<input name="nombres" type="text" data-ng-model="view.persona.nombres" data-ng-minlength="1" data-ng-maxlength="70" class="form-control" ng-trim="false" text-transform-uppercase capitalize required  />
 			<div data-ng-messages="form.nombres.$error" data-ng-if="form.$submitted">
 				<div class="has-error" data-ng-message="required">Ingrese nombres.</div>
 				<div class="has-error" data-ng-message="minlength">Ingrese nombres.</div>
@@ -81,7 +81,7 @@
 		</div>
 	</div>
 	<div class="form-group" data-ng-class="{ 'has-error' : form.fechanacimiento.$invalid && form.$submitted }">
-		<label class="col-sm-2 control-label">Fecha nacimiento:</label>
+		<label class="col-sm-2 control-label">Fecha Nacimiento:</label>
 		<div class="col-sm-2" data-ng-controller="Persona.Util.DateController">
 			<div class="input-group">
 				<input type="text" name="fechanacimiento" class="form-control" sg-max-date="maxDate" data-ng-model="view.persona.fechaNacimiento" datepicker-popup="dd/MM/yyyy" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" data-ng-required="true" close-text="Close" placeholder="dd/mm/yyyy" required>
@@ -108,7 +108,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Estado civil <span class="optional">(opcional)</span>:</label>
+		<label class="col-sm-2 control-label">Estado Civil <span class="optional">(opcional)</span>:</label>
 		<div class="col-sm-2">
 			<ui-select name="estadoCivil" data-ng-model="combo.selected.estadoCivil">
 				<ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>

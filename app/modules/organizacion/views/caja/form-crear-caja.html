@@ -15,7 +15,7 @@
     <div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted}">
       <label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
       <div class="col-sm-3">
-        <input type="text" name="denominacion" ng-model="view.caja.denominacion" ng-maxlength="60" class="form-control" pf-focused="true" style="text-transform: uppercase" autofocus required/>
+        <input type="text" name="denominacion" ng-model="view.caja.denominacion" ng-maxlength="60" class="form-control" pf-focused="true" ng-trim="false" text-transform-uppercase autofocus required/>
         <div ng-messages="form.denominacion.$error" ng-if="form.$submitted">
           <div class="has-error" ng-message="required">Ingrese denominacion.</div>
           <div class="has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
@@ -25,7 +25,7 @@
     <div class="form-group" ng-class="{ 'has-error' : form.abreviatura.$invalid && form.$submitted}">
       <label class="col-sm-2 control-label"><span class="required">*</span> Abreviatura:</label>
       <div class="col-sm-3">
-        <input type="text" name="abreviatura" ng-model="view.caja.abreviatura" ng-maxlength="10" class="form-control" style="text-transform: uppercase" required/>
+        <input type="text" name="abreviatura" ng-model="view.caja.abreviatura" ng-maxlength="10" class="form-control" ng-trim="false" text-transform-uppercase required/>
         <div ng-messages="form.abreviatura.$error" ng-if="form.$submitted">
           <div class="has-error" ng-message="required">Ingrese denominacion.</div>
           <div class="has-error" ng-message="maxlength">Maximo 10 caracteres.</div>
@@ -34,13 +34,13 @@
     </div>
   </fieldset>
   <fieldset class="border-top">
-    <legend><span class="text ng-scope">Asignar bovedas <i class="fa fa-question-circle text-muted ng-scope" tooltip="Asignar bovedas." tooltip-placement="right"></i></span>  <kc-tooltip class="hidden"></kc-tooltip></legend>
+    <legend><span class="text ng-scope">Asignar Bovedas <i class="fa fa-question-circle text-muted ng-scope" tooltip="Asignar bovedas." tooltip-placement="right"></i></span>  <kc-tooltip class="hidden"></kc-tooltip></legend>
     <div class="form-group">
       <label class="col-md-2 control-label">Bovedas asignadas:</label>
       <div class="col-md-10">
         <div class="row">
           <div class="col-md-3">
-            <label class="control-label">Bovedas disponibles <i class="fa fa-question-circle text-muted" tooltip="Bovedas existentes en la agencia." tooltip-placement="right"></i></label>
+            <label class="control-label">Bovedas Disponibles <i class="fa fa-question-circle text-muted" tooltip="Bovedas existentes en la agencia." tooltip-placement="right"></i></label>
             <select class="form-control" multiple size="5" ng-multiple="true" ng-model="combo.selected.bovedaDisponible" ng-options="c.denominacion for c in combo.bovedaDisponible">
             </select>
             <button class="btn btn-default" type="button" ng-click="addBovedas()" tooltip="Asignar bovedas" tooltip-placement="right">
@@ -48,7 +48,7 @@
             </button>
           </div>
           <div class="col-md-3">
-            <label class="control-label">Bovedas asignadas <i class="fa fa-question-circle text-muted" tooltip="Bovedas asignadas a la caja." tooltip-placement="right"></i></label>
+            <label class="control-label">Bovedas Asignadas <i class="fa fa-question-circle text-muted" tooltip="Bovedas asignadas a la caja." tooltip-placement="right"></i></label>
             <select class="form-control" multiple size="5" ng-multiple="true" ng-model="combo.selected.bovedaAsignada" ng-options="c.denominacion for c in combo.bovedaAsignada">
             </select>
             <button class="btn btn-default" type="button" ng-click="removeBovedas()" tooltip="Remover bovedas" tooltip-placement="right">

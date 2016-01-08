@@ -1,16 +1,16 @@
 <form  name="form" class="form-horizontal" novalidate>
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">Documento identidad:</label>
+		<label class="col-sm-3 control-label">Documento Identidad:</label>
 		<div class="col-sm-4">
 			<span data-ng-bind="view.persona.tipoDocumento.abreviatura"></span>
 			<span data-ng-bind="view.persona.numeroDocumento"></span>
 		</div>
 	</div>
 	<div class="form-group" data-ng-class="{ 'has-error' : form.razonSocial.$invalid && form.$submitted }">
-		<label class="col-sm-3 control-label">Razon social:</label>
+		<label class="col-sm-3 control-label">Razon Social:</label>
 		<div class="col-sm-3">
-			<input name="razonSocial" type="text" data-ng-model="view.persona.razonSocial" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" pf-focused="true" capitalize required/>
+			<input name="razonSocial" type="text" data-ng-model="view.persona.razonSocial" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" pf-focused="true" ng-trim="false" text-transform-uppercase capitalize required/>
 			<div data-ng-messages="form.razonSocial.$error" data-ng-if="form.$submitted">
 				<div class="has-error" data-ng-message="required">Ingrese razon social.</div>
 				<div class="has-error" data-ng-message="minlength">Ingrese razon social.</div>
@@ -19,9 +19,9 @@
 		</div>
 	</div>
 	<div class="form-group" data-ng-class="{ 'has-error' : form.nombreComercial.$invalid && form.$submitted }">
-		<label class="col-sm-3 control-label">Nombre comercial <span class="optional">(opcional)</span>:</label>
+		<label class="col-sm-3 control-label">Nombre Comercial <span class="optional">(opcional)</span>:</label>
 		<div class="col-sm-3">
-			<input name="nombreComercial" type="text" data-ng-model="view.persona.nombreComercial" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" capitalize/>
+			<input name="nombreComercial" type="text" data-ng-model="view.persona.nombreComercial" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" ng-trim="false" text-transform-uppercase capitalize/>
 			<div data-ng-messages="form.nombreComercial.$error" data-ng-if="form.$submitted">
 				<div class="has-error" data-ng-message="required">Ingrese nombre comercial.</div>
 				<div class="has-error" data-ng-message="minlength">Ingrese nombre comercial.</div>
@@ -30,9 +30,9 @@
 		</div>
 	</div>
 	<div class="form-group" data-ng-class="{ 'has-error' : form.actividadPrincipal.$invalid && form.$submitted }">
-		<label class="col-sm-3 control-label">Actividad principal <span class="optional">(opcional)</span>:</label>
+		<label class="col-sm-3 control-label">Actividad Principal <span class="optional">(opcional)</span>:</label>
 		<div class="col-sm-3">
-			<input name="actividadPrincipal" type="text" data-ng-model="view.persona.actividadPrincipal" data-ng-minlength="1" data-ng-maxlength="70" class="form-control" capitalize />
+			<input name="actividadPrincipal" type="text" data-ng-model="view.persona.actividadPrincipal" data-ng-minlength="1" data-ng-maxlength="70" class="form-control" ng-trim="false" text-transform-uppercase capitalize />
 			<div data-ng-messages="form.nombres.$error" data-ng-if="form.$submitted">
 				<div class="has-error" data-ng-message="required">Ingrese actividad principal.</div>
 				<div class="has-error" data-ng-message="minlength">Ingrese actividad principal.</div>
@@ -41,7 +41,7 @@
 		</div>
 	</div>
 	<div class="form-group" data-ng-class="{ 'has-error' : form.fechaConstitucion.$invalid && form.$submitted }">
-		<label class="col-sm-3 control-label">Fecha constitucion:</label>
+		<label class="col-sm-3 control-label">Fecha Constitucion:</label>
 		<div class="col-sm-2" data-ng-controller="Persona.Util.DateController">
 			<div class="input-group">
 				<input type="text" name="fechaConstitucion" class="form-control" sg-max-date="maxDate" data-ng-model="view.persona.fechaConstitucion" datepicker-popup="dd/MM/yyyy" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" data-ng-required="true" close-text="Close" placeholder="dd/mm/yyyy" required>
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 	<div class="form-group" data-ng-class="{ 'has-error' : form.tipoEmpresa.$invalid && form.$submitted }">
-		<label class="col-sm-3 control-label">Tipo empresa:</label>
+		<label class="col-sm-3 control-label">Tipo Empresa:</label>
 		<div class="col-sm-2">
 			<ui-select name="tipoEmpresa" data-ng-model="combo.selected.tipoEmpresa" required>
 				<ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>
@@ -68,7 +68,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">Fin de lucro <span class="optional">(opcional)</span>:</label>
+		<label class="col-sm-3 control-label">Fin de Lucro <span class="optional">(opcional)</span>:</label>
 		<div class="col-sm-2">
 			<div class="checkbox" style="margin-top:5px;">
 				<label>

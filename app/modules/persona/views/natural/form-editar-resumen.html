@@ -3,7 +3,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <fieldset class="border-top">
-                    <legend><span class="text">Datos principales</span></legend>
+                    <legend><span class="text">Datos Principales</span></legend>
                     <div class="row">
                         <div class="col-sm-8">
                             <dl class="dl-horizontal left">
@@ -15,22 +15,22 @@
                                 <dd data-ng-bind="view.persona.numeroDocumento"></dd>
                             </dl>
                             <dl class="dl-horizontal left">
-                                <dt>Apellido paterno:</dt>
+                                <dt>Apellido Paterno:</dt>
                                 <dd data-ng-bind="view.persona.apellidoPaterno"></dd>
-                                <dt>Apellido materno:</dt>
+                                <dt>Apellido Materno:</dt>
                                 <dd data-ng-bind="view.persona.apellidoMaterno"></dd>
                                 <dt>Nombres:</dt>
                                 <dd data-ng-bind="view.persona.nombres"></dd>
                             </dl>
                             <dl class="dl-horizontal left">
-                                <dt>Fecha nacimiento:</dt>
+                                <dt>Fecha Nacimiento:</dt>
                                 <dd data-ng-if="view.persona.fechaNacimiento"
                                     data-ng-bind="view.persona.fechaNacimiento | date : 'dd/MM/yyyy'"></dd>
                                 <dd data-ng-if="!view.persona.fechaNacimiento"><em>No registrado</em></dd>
                                 <dt>Sexo:</dt>
                                 <dd data-ng-if="view.persona.sexo" data-ng-bind="view.persona.sexo"></dd>
                                 <dd data-ng-if="!view.persona.sexo"><em>No registrado</em></dd>
-                                <dt>Estado civil:</dt>
+                                <dt>Estado Civil:</dt>
                                 <dd data-ng-if="view.persona.estadoCivil" data-ng-bind="view.persona.estadoCivil"></dd>
                                 <dd data-ng-if="!view.persona.estadoCivil"><em>No registrado</em></dd>
                             </dl>
@@ -67,7 +67,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <fieldset class="border-top">
-                    <legend><span class="text">Datos adicionales</span></legend>
+                    <legend><span class="text">Datos Adicionales</span></legend>
                     <dl class="dl-horizontal left">
                         <dt>Ocupacion:</dt>
                         <dd data-ng-if="view.persona.ocupacion" data-ng-bind="view.persona.ocupacion"></dd>

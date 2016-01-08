@@ -10,7 +10,7 @@
 	<div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted}">
 		<label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
 		<div class="col-sm-3">
-			<input type="text" name="denominacion" ng-model="view.caja.denominacion" ng-maxlength="20" class="form-control" autofocus required/>
+			<input type="text" name="denominacion" ng-model="view.caja.denominacion" ng-maxlength="20" class="form-control" ng-trim="false" text-transform-uppercase autofocus required/>
 			<div ng-messages="form.denominacion.$error" ng-if="form.denominacion.$touched || form.$submitted">
 				<div class="has-error" ng-message="required">Ingrese denominacion.</div>
 				<div class="has-error" ng-message="maxlength">Maximo 20 caracteres.</div>
