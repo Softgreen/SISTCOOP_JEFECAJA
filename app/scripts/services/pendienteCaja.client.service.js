@@ -8,6 +8,9 @@ angular.module('mean').factory('PendienteCajaService', ['Restangular',
             },
             getVoucherPendienteCaja: function (id) {
                 return Restangular.one('pendiente/' + id + '/voucher').get();
+            },
+            getPendientes: function (idAgencia) {
+              return Restangular.all('pendiente/reportePendienteCaja').getList({idAgencia: idAgencia});
             }
         };
 

@@ -31,6 +31,7 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
 
     $urlRouterProvider.when('/organizacion/app/estructura/bovedas', '/organizacion/app/estructura/bovedas/buscar');
     $urlRouterProvider.when('/organizacion/app/estructura/cajas', '/organizacion/app/estructura/cajas/buscar');
+    $urlRouterProvider.when('/organizacion/app/estructura/pendientes', '/organizacion/app/estructura/pendientes/buscar');
 
     $urlRouterProvider.when('/organizacion/app/estructura/bovedas/editar/:boveda', '/organizacion/app/estructura/bovedas/editar/:boveda/resumen');
     $urlRouterProvider.when('/organizacion/app/estructura/cajas/editar/:caja', '/organizacion/app/estructura/cajas/editar/:caja/resumen');
@@ -234,6 +235,24 @@ angular.module('organizacion').config(['$stateProvider', '$urlRouterProvider',
         resolve: {},
         ncyBreadcrumb: {
           label: 'Abrir caja'
+        }
+      })
+
+      //Pendientes Caja
+      .state('organizacion.app.estructura.pendiente', {
+        url: '/pendientes',
+        template: '<div ui-view></div>',
+        ncyBreadcrumb: {
+          skip: true // Never display this state in breadcrumb.
+        }
+      })
+      .state('organizacion.app.estructura.pendiente.buscar', {
+        url: '/buscar',
+        templateUrl: 'modules/organizacion/views/pendienteCaja/form-buscar-pendiente.html',
+        controller: 'Organizacion.Pendiente.BuscarController',
+        resolve: {},
+        ncyBreadcrumb: {
+          label: 'Home'
         }
       })
 

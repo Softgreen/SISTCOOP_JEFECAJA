@@ -84,6 +84,7 @@ angular.module('organizacion').service('$menuItemsOrganizacion', [
 
             estructura.addItem('Bovedas', 'organizacion.app.estructura.boveda');
             estructura.addItem('Cajas', 'organizacion.app.estructura.caja');
+            estructura.addItem('Pendientes', 'organizacion.app.estructura.pendiente');
 
             transaccionInterna.addItem('Boveda/Caja', 'organizacion.app.transaccionInterna.bovedaCaja');
             transaccionInterna.addItem('Entidad --> Boveda', 'organizacion.app.transaccionInterna.entidadBoveda');
